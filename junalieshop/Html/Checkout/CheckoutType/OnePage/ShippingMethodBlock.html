@@ -1,0 +1,90 @@
+<div id="opc-shipping-method" class="checkout-block shipping-method" step="shipping_method" onclick="openCheckoutStep(this);">
+	<div class="title">
+		<div class="circle-number ">[General.Param1]</div>
+		<div class="step-header">
+			<a name="step_shippingmethod"></a>
+			<h4>[_Shipping Method]</h4>
+		</div>
+	</div>
+	<div class="col-md-12 content ">
+		<div class="shipping-method-form col-md-12">
+			<form id="co-shipping-method-form" action="" name="co-shipping-method-form">
+				<input type="hidden" value="[Website.CurrentStoreView=[StoreView.Id]]" name="storeViewId">
+				[?ShoppingCart.AreThereAnyAvailableShippingMethods|Yes=
+					<ul class="shipping-method-list list-unstyled">
+						[ShoppingCart.AvailableShippingMethods=
+							<li>
+								
+								<div class="col-md-12">
+									<input type="radio" name="method" class="shipping-method-item validateOneRequiredByName" value="[ShippingMethod.Id]" id="s_method_[ShippingMethod.Id]_[General.LoopIndex]" onclick="showExtrInfo('s_method_[ShippingMethod.Id]_[General.LoopIndex]');"/>
+									<label for="s_method_[ShippingMethod.Id]_[General.LoopIndex]" class="in-block">
+										<span>
+											[ShippingMethod.Name]
+											[ShoppingCart.ShippingCostsForCertainMethod,[ShippingMethod.Id]]
+										</span>
+									</label>
+									<div style="padding-left: 40px;" class="shipping-additional-info hide" id="s_method_[ShippingMethod.Id]_[General.LoopIndex]-extra-info">
+										<ul class="list-unstyled checkout-extrafields">
+											[ShippingProcessor.ExtraFields=
+												[:ExtraField,shipping_method_[ShippingMethod.Id]]
+											]
+										</ul>
+										<ul class="list-unstyled checkout-extrafields">
+											[ShippingMethod.ExtraFields=
+												[:ExtraField,shipping_method_[ShippingMethod.Id]]
+											]
+										</ul>
+										[:ShippingMethodStoreLocations,[ShippingMethod.Id]]
+									</div>
+								</div>
+								
+							</li>
+						]
+					</ul>
+				|=
+					<p>[ShoppingCart.AvailabilityShippingMethodsDescription]</p>
+				]
+				<div class="row">
+					<div class="col-md-12">
+						<hr/>
+					</div>
+				</div>
+				<div class="buttons-set text-right">
+					[?Customer.LoggedIn|Guest=
+						<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+							<img src="[File:/images/i_asc_arrow.gif]"/> [_Back]
+						</a>
+					]
+					<span class="please-wait pull-left" id="shipping_method-please-wait" style="display:none;">
+						<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class=""> [_Loading next step...]        
+					</span>
+					<div class="required-fields"><em>* [_Required fields]</em></div>
+					<div class="incra-block">
+						<button class="btn btn-primary btn-checkout" onclick="shippingMethod.save();return false;">
+							[_Continue]
+						</button>
+					</div>
+				</div>
+				<!-- <div class="buttons-set">
+					<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+						<img src="[File:/images/i_asc_arrow.gif]"/> Back</a>
+					<span class="please-wait" id="shipping_method-please-wait" style="display:none;">
+						<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class="v-middle">[_Loading next step...]
+					</span>
+					<div class="required-fields"><em>* [_Required fields]</em></div>
+					<button type="button" title="Continue" class="button btn[Design.DesignSelectionName,ButtonStyle]" onclick="shippingMethod.save()"><span><span>[_Continue]</span></span></button>
+				</div> -->
+			</form>
+		</div>
+		/*[ShoppingCart.AvailableShippingMethods=
+		<div id="shipping-storelocations-container-[ShippingMethod.Code]" style="display:none">
+			[:ShippingMethodStoreLocations]
+		</div>
+		]*/
+	</div>
+	
+</div>
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:ShippingMethodBlockJS]

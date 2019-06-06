@@ -1,0 +1,13 @@
+[?ShoppingCart.HasCrossSells|Yes=
+	<div class="crossells-box col-md-12">
+		<div class="">
+			<h4>[_Based on your selection, you may be interested in the following items:]</h4>
+			<hr/>
+		</div>
+		<div class="col-md12">
+			[ShoppingCart.CrossSells,4=
+				[:vProductMiniListItem]
+			]
+		</div>
+	</div>
+]

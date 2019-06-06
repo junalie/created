@@ -1,0 +1,27 @@
+/*
+*		Renders the default page of the site. Consider to be index.html or index.php on standard website.
+*
+*/
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		[:MetaData, [_Best rated product] | [Configuration.DesignHeadDefaultTitle] ]
+		[:head]
+	</head>
+	<body class="[Url.Model][Url.View]">
+		[:HeaderBlock]
+		<div class="once-column container">
+			[:vBreadcrumbs]
+			[:Notification]
+			<div class="main-content ">
+				<h4>
+					<i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;
+					[_The site is under maintenance, We will be back for a while...]
+				</h4>
+			</div>
+		</div>
+		
+		[:vFooterType?DesignLayout.FooterType]
+
+	</body>
+</html>

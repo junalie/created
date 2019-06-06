@@ -1,0 +1,25 @@
+<div class="discount-coupon-box panel panel-default">
+	<div class="discount">
+		<h4 class="discount-title">[_ESTIMATED SHIPPING AND TAX]</h4>
+		<hr/>
+		<div class="row">
+			<div class="col-md-7 discount-form form-group">
+				<label for="coupon_code">[_Enter your destination to get a shipping estimate.]</label>
+				<input id="remove-coupon" type="hidden" value="0" name="remove">
+				<div class="">
+					<select id="country-address" class="form-control required small" title="[_Country]" onchange="loadRegions(this.value)">
+						<option></option>
+						[Website.AvailableCountries=
+							[CountryGroup.Countries=
+								<option value="[Country.Id]">[Country.Name]</option>
+							]
+						]
+					</select>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<button type="submit" title="[_Calculate Shipping]" class="btn btn-default" onclick="" value="[_Calculate Shipping]"><span><span>[_Calculate Shipping]</span></span></button>
+			</div>
+		</div>
+	</div>
+</div>

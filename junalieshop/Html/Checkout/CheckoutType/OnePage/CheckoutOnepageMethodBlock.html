@@ -1,0 +1,62 @@
+<div id="opc-login" class="checkout-block chekcout-method active" step="login" onclick="openCheckoutStep(this);">
+	<div class="title">
+		<div class="circle-number ">[General.Param1]</div>
+		<div class="step-header">
+			<h4>[_Checkout Method]</h4>
+		</div>
+	</div>
+	<div class="content open clearfix">
+		<div class="checkout-register col-md-6">
+			<span ><strong>[_CHECKOUT AS GUEST OR REGISTER]</strong><span>
+			<p><br/>[_Register with us for future convinience.]</p>
+			<ul class="col-md-12">
+				[?Configuration.CheckOutAllowGuest|Yes=
+					<li>
+						<label>
+							<input id="login_guest" name="checkout-method" value="guest" type="radio" 	[?ShoppingCart.AllowGuestCheckOut|Yes=checked]/> [_Checkout as guest]
+						</label>
+					</li>
+				]
+					<li>
+						<label>
+							<input id="login_register" name="checkout-method" value="register" type="radio" [?ShoppingCart.AllowGuestCheckOut|No=checked]/> [_Register]
+						</label>
+					</li>
+			</ul>
+			<p><strong>[_Register and save time!]</strong>
+				<ul>
+					<li>[_Fast and easy checkout]</li>
+					<li>[_Easy access to your order history and status]</li>
+				</ul>
+			</p>
+			<div class="col-md-12" style="margin-top: 25px;">
+				<button type="button" title="[_Create an Account]" class="btn btn-default" onclick="checkout.setMethod()">
+					<span><span>[_Continue]</span></span>
+				</button>
+			</div>
+		</div>
+		<div class="checkout-login col-md-6">
+			<span ><strong>[_LOGIN]</strong><span>
+			<p><br/><strong>[_Already registered?]</strong><br/>
+			[_Please log in below]</p>
+			<form id="checkout-login" method="post">
+				<ul>
+					<li><label>[_Email address] <em>*</em></label></li>
+					<li><input type="text" name="username" class="checkout-input form-control"/></li>
+					<li><label>[_Password] <em>*</em></label></li>
+					<li><input type="password" name="password" class="checkout-input form-control"/></li>
+					<li><em>* [_Required fields]</em></li>
+				</ul>
+				<div class="buttons-set text-right">
+					<div class="forgot-password"><a href="[Website.GetUrl,Login,ForgotPassword]">[_Forgot your password?]</a></div>
+					<button onclick="login.submit()" type="button" title="[_Login]" class="btn btn-primary"><span><span>[_Login]</span></span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:CheckoutOnepageMethodBlockJS]

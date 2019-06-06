@@ -1,0 +1,17 @@
+
+/*
+*	Renders the main content of the cart page. 
+*
+*/
+<div class="shopping-cart container">
+  	<div class="col-md-12 page-title">
+  		<h2><span class="glyphicon glyphicon-shopping-cart"></span> [_My Shopping Cart]</h2>
+  		<hr/>
+  	</div>
+	[?ShoppingCart.Empty
+		|CartFilled=
+			[:CartTableBlock]
+		|CartEmpty=
+			<div class="empty col-md-12"> [_Your Cart is empty.]</div>
+	]
+</div>

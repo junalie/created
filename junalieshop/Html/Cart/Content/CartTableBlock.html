@@ -1,0 +1,67 @@
+<div class="col-md-12 incra-block incra-block-lg">
+	<div class="checkout-button-container text-right incra-block">
+		<button onclick="window.location='[Website.GetUrl,Checkout,OnePage]'" type="button" class="btn btn-primary btn-lg">
+			[_Proceed to Checkout]
+		</button>
+	</div>
+	<form action="" method="post" id="cart-form">
+		<table class="table table-bordered table-striped">
+			<colgroup>
+				<col width="100">
+				<col width="200">
+				<col width="100">
+				<col width="100">
+				<col width="100">
+				<col width="100">
+				<col width="60">
+			</colgroup>
+			<thead class="head-title">
+				<tr>
+					<th rowspan="2"></th>
+					<th rowspan="2">[_Product Name]</th>
+					<th rowspan="2"></th>
+					<th colspan="" class="a-right">[_Unit Price]</th>
+					<th rowspan="2">[_Qty]</th>
+					<th colspan="" class="a-right">[_Subtotal]</th>
+					<th rowspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				[:CartItemsBlock]
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						<button type="button" class="btn btn-default" onclick="window.location='[Website.GetUrl,Home]'">[_Continue shopping]</button>
+					</td>
+					<td colspan="5" class="text-right">
+						<button type="button" class="btn btn-warning" onclick="IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,ClearCart]',IncraWindow.formatUrl('[Url.FullUrl]'),'true');">
+							<span class="glyphicon glyphicon-trash"></span> [_Empty cart]
+						</button>&nbsp;
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-refresh"></span> 
+							[_Update cart]
+						</button>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</form>
+    [:mainContentCartJS]
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-6">
+			[:CartDiscountCouponBlock]
+			[:CartShippingCalculationBlock]
+		</div>
+		<div class="col-md-6">
+			[:CartTotalsBlock]
+		</div>
+	</div>
+</div>
+<div class="row incra-block">
+	<div class="col-md-12">
+		[:CartCrossSellsBlock]
+	</div>
+</div>

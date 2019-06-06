@@ -1,0 +1,24 @@
+/* same as CheckOutProcessingPage (but refreshed). Show the same, just ass "is already done" or so */
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Processing - Already Done]]
+	[:head]
+	
+</head>
+	<body>
+		[:headerblock]
+		<div class="once-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container] ">
+			[:Notification]
+			<div class="main-content " style="min-height: 400px;">
+				[Website.StaticBlockContentParsed,CheckoutProcessing]
+				<p>[_Current status of your order :] [OrderMutation.Status]</p>
+				<div class="button-set">
+					<button type="button" class="form-button" onclick="window.location='[Website.GetUrl,Home,]'"><span>[_Continue Shopping]</span></button>
+				</div>
+				[:CheckoutProcessingStoreInformationBlock]
+			</div>
+		</div>
+		[:footerblock]
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-12 block-title">
+		<h4>Product tags</h4>
+	</div>
+</div>
+<div class="product-info-block-content">
+	[?Product.HasTags
+		|Yes=
+			<h5>[_Other people marked this product with these tags:]</h5>
+			<ul class="list-unstyled list-inline tags">[Product.TagsSortedAndUnique= <li> <a href="[Website.GetUrl,Tag,[Tag.Name]]">[Tag.Name]  </a> ([Tag.ProductCountWithTagName]) </li>]</ul>
+	]
+	<div class="incra-block col-md-12">
+		<form id="addTagForm" action="" method="get" class="form">
+			<div class="form-group">
+				<label for="productTagName">[_Add Your Tags]</label>
+				<input type="text" class="form-control required" name="tagname" id="productTagName" style="width:500px;"/>
+			</div>
+			<button type="submit" title="[_Add Tags]" class="btn btn-default">
+				<span>
+					<span>[_Add Tags]</span>
+				</span>
+			</button>
+		</form>
+		<br/>
+		<p class="note">[_Use spaces to separate tags. Use single quotes (') for phrases.]</p>
+	</div>
+	/*
+		JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+	*/
+	[:vProductTagsJS]
+	
+</div>

@@ -1,0 +1,47 @@
+[?Product.ProductType|Configurable=
+    <div id="conf-attributes[Product.Id]" class="col-md-12 product-attributes panel panel-default incra-block">
+        [Product.ConfigurableAttributes=
+            [?Attribute.CatalogInputType|Color=[:vProductColorAttribute]
+                |=
+                    [?Attribute.AttributeCode|Size=
+                            [:vProductSizeAttribute]
+                        |Color=
+                            [:vProductColorAttribute]
+                        |=
+                        <div class="form-group">
+                            <label>[Attribute.Title]</label>
+                            <select [?Attribute.ValueRequired|Yes=required] name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttributeValue('[Attribute.AttributeCode]',this.value)" class="product-attrib form-control" >
+                                <option value="">[_Please select]</option>
+                                [Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+                                    <option value="[AttributeOption.Id]" admin="[AttributeOption.Admin]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.DisplayValue]</option>
+                                ]
+                            </select>
+                        </div>
+                    ]
+            ]
+        ]
+    </div>
+    <script type="text/javascript">
+        var attrib = jQuery(".product-attrib").initProductAttributes({
+                                    'product_url' 		: '[Website.GetUrl,Product,[Product.Id]]',
+                                    'ajax_url'	  		: '[Website.GetUrl,Ajax,Update]',
+                                    'attribute_class'  	: 'product-attrib',
+                                    'callback'			: {
+                                        afterAttributeSelect : function(){
+                                            [?General.isEmpty,[Design.DesignSelectionName,vProductMediaImage]|yes=
+                                                product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint');
+                                            ]
+                                            //console.log(product_zoom);
+                                        }
+                                    }
+                                });
+        function setAttributeValue(id,value){
+            if(id!=""){
+                //jQuery("#"+id).val(value);
+                attrib.selectAttribute();
+            }else{
+
+            }
+        }
+    </script>
+]

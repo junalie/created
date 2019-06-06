@@ -1,0 +1,19 @@
+/*
+*		Renders the cms page. This page may render the cms as a content of this page or the content as a whole page.
+*       url : /<urlkey> or /cmspage/id/<id>
+*/
+
+        <!DOCTYPE html >
+        <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <title>[Website.Name] [:PipeSlash] [CmsPage.PageTitleFull]</title>
+                <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+                <meta name="description" content="[CmsPage.MetaDescriptionFull]">
+                <meta name="keywords" content="[CmsPage.MetaKeywordsFull]">
+                [:head]
+            </head>
+            <body class="[Url.Model][Url.View]">
+                [:[DesignLayout.Layout]]blalalala
+            </body>
+        </html>
+

@@ -1,0 +1,140 @@
+<div id="opc-review" class="checkout-block order-review last" step="review" >
+	<div class="title">
+		<div class="circle-number">[General.Param1]</div>
+		<div class="step-header">
+			<h4>[_Order Review]</h4>
+		</div>
+	</div>
+	<div class="col-md-12  content " style="">
+		<form id="exp-review-form" action="[Website.GetUrl,Checkout, Confirm]" method="post">
+		<input type="hidden" value="1" name="success">
+			<table class="table order-review-table">
+				<colgroup>
+					<col>
+			        <col width="">
+			        <col width="">
+			        <col width="">
+	            </colgroup>
+				<thead>
+					<tr>
+						<th class="">[_Product Name]</th>
+						<th class="text-right">[_Unit Price]</th>
+						<th class="text-right">[_Qty]</th>
+						<th class="text-right no-right-border">[_Subtotal]</th>
+					</tr>
+					
+				</thead>
+				<tbody>
+					[ShoppingCart.Items= 
+					<tr>
+						<td>[Product.Name]</td>
+						<td class="text-right">[ShoppingCartItem.PriceEach]</td>
+						
+						<td class="text-right">[ShoppingCartItem.Quantity]</td>
+					
+						<td class="text-right">[ShoppingCartItem.RowTotal]</td>	
+					</tr>
+					]
+					<tfoot>
+							<tr>
+								<td colspan="3" align="left" class="text-left no-all-borders ">[_Subtotal]</td>
+								<td class="text-right no-all-borders"><span class="table-price">[ShoppingCart.BasePrice]</span></td>
+							</tr>
+							
+						[?ShoppingCart.HasDiscounts
+						|yes=
+							<tr>
+								<td colspan="3" align="left" class="text-left no-all-borders ">
+									[_Discounts:]
+									[ShoppingCart.Discounts= [ShoppingCartDiscount.Name] [ShoppingCartDiscount.Amount]  ([ShoppingCartDiscount.AmountText]) 
+									]
+								</td>
+								<td class="text-right no-all-borders">
+									<span class="table-price">- [ShoppingCart.TotalDiscounts]</span>
+								</td>
+							</tr>
+						]
+						
+						[?ShoppingCart.FreeShipping
+						|n/a=
+						|Yes=
+							<tr>
+								<td colspan="3" align="left" class="text-left no-all-borders ">
+									[_Shipping Costs:]
+								</td>
+								<td class="">
+									[_Free Shipping]
+								</td>
+							</tr>
+						|No=<tr>
+								<td colspan="3" align="right" class="text-left no-all-borders ">
+									[_Shipping Costs:]
+								</td>
+								<td class="text-right no-all-borders">
+									<span class="table-price">[ShoppingCart.ShippingCosts]</span>
+								</td>
+							</tr>
+						]
+						[?ShoppingCart.PaymentCostAvaiable|Yes=
+							<tr>
+								<td colspan="3" align="left" class="text-left no-all-borders ">
+									[_Payment Costs:]
+								</td>
+								<td class="text-right no-all-borders">
+									<span class="table-price">[ShoppingCart.PaymentCost]</span>
+								</td>
+							</tr>
+						]
+						<tr>
+							<td colspan="3" align="left" class="text-left no-all-borders "><strong>[_SubTotal Excl. Tax]</strong></td>
+							<td class="text-right no-all-borders"><span class="table-price"><strong>[ShoppingCart.TotalExclTax]</strong></span></td>
+						</tr>
+						
+						[?ShoppingCart.HasTaxes
+						|yes=
+
+						<tr>
+							<td colspan="3" align="left" class="text-left no-all-borders ">
+								[_Taxes:] [ShoppingCart.TaxAndCosts=[ShoppingCartTaxAndCost.Name]  [ShoppingCartTaxAndCost.Amount]% Over [ShoppingCartTaxAndCost.OverAmount] </i>
+							]
+							</td>
+							<td class="text-right no-all-borders">
+								<span class="table-price">[ShoppingCart.TotalTax]</span>
+							</td>
+						</tr>
+						]
+						<tr>
+							<td colspan="3" align="right" class="text-left no-all-borders "> <span class="grand-total default-orange">[_Grand Total]</span></td>
+							<td class="text-right no-all-borders"><span class="table-price grand-total default-orange">[ShoppingCart.TotalInclTax]</span></td>
+						</tr>
+						
+						[?Configuration.EnableTermsAndConditions|Yes=
+							<tr>
+								<td colspan="4">
+									[:TermsAndConditionsBlock]
+								</td>
+							</tr>
+						]
+						<tr>
+							<td colspan="3" align="right"></td>
+							<td colspan="1" align="right">
+								<div class="row" style="padding-top: 10px;">
+									<div class="checkout-button-top text-right" style="padding-top: 10px;">
+										<button class="btn btn-primary btn-lg btn-checkout-place-order" onclick="review.save();return false;">
+											[_PLACE ORDER]
+										</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tfoot>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:OrderReviewBlockJS]
+

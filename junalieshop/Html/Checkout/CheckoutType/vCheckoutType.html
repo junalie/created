@@ -1,0 +1,26 @@
+<div class="col-md-12 checkout-onepage" >
+    <div class="">
+        <h2>CHECKOUT</h2>
+        <div class="opc accordion checkout-steps" id="checkoutSteps">
+            [?Customer.LoggedIn|Guest=
+                    [:CheckoutOnepageMethodBlock,1]
+                    [:BillingInformationBlock,2]
+                    [:ShippingInformationBlock,3]
+                    [:ShippingMethodBlock,4]
+                    [:PaymentMethodBlock,5]
+                    [:OrderReviewBlock,6]
+                |LoggedIn=
+                    [:BillingInformationBlock,1]
+                    [:ShippingInformationBlock,2]
+                    [:ShippingMethodBlock,3]
+                    [:PaymentMethodBlock,4]
+                    [:OrderReviewBlock,5]
+            ]
+        </div>    
+    </div> 
+</div>
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:vCheckoutTypeJS]
+

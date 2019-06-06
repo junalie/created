@@ -1,0 +1,23 @@
+[?CmsPage.Header|Yes=
+    [:HeaderBlock]
+]
+    <div class="two-columns-left [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container]">
+        [:vBreadcrumbs]
+        [:Notification]
+        <div class="main-content ">
+            <div class="left-column col-md-3">
+                [?CmsPage.LeftCol|Yes=
+                    [:leftColumnType?DesignLayout.LeftColumnType]
+                ]
+            </div>
+            <div class="col-md-9 main-content " style="min-height: 400px;">
+                <div class="row">
+                    [:mainContent]
+                </div>
+            </div>
+        </div>
+    </div>
+[?CmsPage.Footer|Yes=
+    [:FooterBlock]
+]
+

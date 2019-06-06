@@ -1,0 +1,72 @@
+[ShoppingCart.Items= 
+	<tr>
+		<td class="text-center">
+			<a class="product-image" title="[Product.Name]" href="[Website.GetUrl,Product,[Product.Id]]">
+				[?Product.ThumbnailImageEmpty|Yes=
+					<img src="[File:/images/no_image.png]">
+				|No=
+					<img src="/[Product.ThumbnailImageUrl]" style="width: 100px;">
+				]
+			</a>
+		</td>
+	    <td class="p-items">
+			<a href="[Website.GetUrl,Product,[Product.Id]]">
+				<h4>[Product.Name]</h4>
+			</a>
+			[?Product.StockStatus
+			|PreOrder=
+				[?General.IsEmpty,Product.DeliveryTimeWhenPreOrderSmart|No=<p>[Product.DeliveryTimeWhenPreOrderSmart]</p>]
+			]
+			[?SimpleProduct.IsReserved,[Customer.Id]|Yes=
+				<p>[_Time reservation for reservation : ] [Product.ReservationForCustomer,[Customer.Id]=[Reservation.TimeRemaining]]</p>
+			]
+			/*** for product time based ***/
+			[?ShoppingCartItem.ProductTimeId|0=
+			|=
+				<div class="alert alert-success" style="text-transform: uppercase;">[ProductTime.DateTime,dd-mm-yyyy hh:nn]</div>
+			]
+
+			[?General.IsEmpty,[ShoppingCartItem.Message]|No=
+				<p class="item-msg error" style="color:red">[ShoppingCartItem.Message]</p>
+			]
+			[ShoppingCartItem.Attributes=
+				<dl class="item-options">
+					<dt>[Attribute.AdminTitle] : [ShoppingCartItemAttribute.Value]</dt>
+				</dl>
+			]
+			[ShoppingCartItem.Options=
+				<dl class="item-options">	
+					<dt>[ProductOption.Label] : [ShoppingCartOption.ValueAsText]</dt> 
+				</dl>
+			]
+		</td>
+	    <td class="text-center">
+			
+		</td>
+	    <td class="text-right">
+			<div class="cart-price">
+				<span class="price">[ShoppingCartItem.PriceEach]</span>
+			</div>
+		</td>
+		<td class="text-center">
+			<div class="cart-price">
+				<span class="qty">
+					<input name="qty[ShoppingCartItem.Id]" type="text" value="[ShoppingCartItem.Quantity]" size="4" title="[_Qty]" class="form-control qty" maxlength="12">
+				</span>
+			</div>
+		</td>
+		<td>
+			<div class="cart-price a-right">
+				<span class="subtotprice">[ShoppingCartItem.RowTotal]</span>
+			</div>
+		</td>
+		<td class="a-center last">
+			<a title="Edit item parameters" href="[Website.GetUrl,Product,[Product.Id]]">
+				<span class="glyphicon glyphicon-pencil"></span> [_Edit]
+			</a>&nbsp;
+			<a title="[_Remove Item]" href="#" onclick="IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,RemoveFromCart]',IncraWindow.formatUrl('[Url.FullUrl]'),'true/[ShoppingCartItem.Id]');">
+				<span class="glyphicon glyphicon-remove-circle"></span>
+			</a>
+		</td>
+	</tr>
+]

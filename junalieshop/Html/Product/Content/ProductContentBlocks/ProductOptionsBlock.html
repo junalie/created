@@ -1,0 +1,36 @@
+[?Product.HasOptions
+	|Yes=
+	<div class="">
+		<div class="col-md-12 panel panel-default">
+			<h4 class="">[_Product Options]</h4>
+            <hr/>
+			<div class="custom-options-container ">
+				<div class="custom-options">
+					[Product.Options=
+                        [?ProductOption.Type
+                            |Field=[:ProductOptionTypeText]
+                            |Area=[:ProductOptionTypeText]
+                            |File=[:ProductOptionTypeFile]
+                            |DropDown=[:ProductOptionTypeSelect]
+                            |RadioBox=[:ProductOptionTypeCheckRadio]
+                            |CheckBox=[:ProductOptionTypeCheckRadio]
+                            |MultipleSelect=[:ProductOptionTypeSelect]
+                            |Date=[:ProductOptionTypeDate]
+                            |DateTime=[:ProductOptionTypeDate]
+                            |Time=[:ProductOptionTypeDate]
+                        ]
+                    ]
+				</div>
+			</div>
+		</div>
+	</div>
+]
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery(".custom-options-container.Default .quantity-block").css("float","right");
+		jQuery(".custom-options-container.Default .add-to-box .add-to-cart").css("marginTop","0px");
+		[?DesignLayout.Layout|1Column=
+			jQuery(".custom-options-container.Default .add-to-box").removeClass("large-6").addClass("large-4");
+		]	
+	})
+</script>

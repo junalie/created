@@ -1,0 +1,44 @@
+/*
+*	Renders a block of product price with tax options.
+*
+*/
+<!--product page -->
+[?Product.ProductType
+|Configurable=
+	[?Product.ConfigurableHasDifferentPrices|Yes=
+		[_From %1 to %2,[Product.ConfigurableMinPrice],[Product.ConfigurableMaxPrice]]
+	|No=
+		<span class="price standard">
+			[Product.ConfigurableMinPrice]
+		</span>
+	]
+	
+|=
+	[?Product.ActualPriceTakenFrom
+	|Standard=
+		<span class="price standard">[Product.ActualPriceInclTaxInclCosts]</span>
+		/*** checks if actual price incl tax and cost is not the same with price excl tax ***/
+		[?CustomerGroup.DisplayPricesExclTax|Yes= 
+			[?General.Equal,[Product.ActualPriceInclTaxInclCosts],[Product.ActualPriceExclTaxExclCosts]|No=
+			<p class="exclusive-tax"> <i>[Product.ActualPriceExclTaxExclCosts] excl tax</i> </p>]
+		]
+		
+	|Special=
+		<span class="old-price">[_<s>%1</s>, [Product.OriginalPriceInclTaxInclCosts]]</span>
+		<div class="special-price">
+			[_<span class="price">%1</span>, [Product.ActualPriceInclTaxInclCosts]] 
+		</div> 
+		[?CustomerGroup.DisplayPricesExclTax|Yes= 
+			[?General.Equal,[Product.ActualPriceInclTaxInclCosts],[Product.ActualPriceExclTaxExclCosts]|No=
+			<p class="exclusive-tax"> <i>[Product.ActualPriceExclTaxExclCosts] excl tax</i> </p>]
+		]
+
+	|Rules=
+		<span class="old-price">[_<s>%1</s>, [Product.OriginalPriceInclTaxInclCosts]]</span>
+		<div class="special-price">[_<span class="price">%1</span>, [Product.ActualPriceInclTaxInclCosts]]</div> 
+		[?CustomerGroup.DisplayPricesExclTax|Yes= 
+			[?General.Equal,[Product.ActualPriceInclTaxInclCosts],[Product.ActualPriceExclTaxExclCosts]|No=
+			<p class="exclusive-tax"> <i>[Product.ActualPriceExclTaxExclCosts] excl tax</i> </p>]
+		]
+	]
+]

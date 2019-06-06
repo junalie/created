@@ -1,0 +1,478 @@
+/*
+*		Renders all the things to be added in the head for most of the pages.
+*
+*/
+
+<!-- Header Files -->
+<meta name="robots" content="[Configuration.DesignHeadDefaultRobots]">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="[Configuration.DesignFavIcon]">
+<link href="[File:/css/fa/css/font-awesome.css]" rel="stylesheet" type="text/css"/>
+<link href="[File:/css/reset.css]" rel="stylesheet" type="text/css"/>
+
+<script src="[File:/js/jquery-1.11.3.js]"></script>
+
+<script src="[File:/js/prototype/prototype.js]"></script>
+
+<script src="[File:/js/scriptaculous/effects.js]"></script>
+<script src="[File:/js/scriptaculous/controls.js]"></script>
+<script src="[File:/js/scriptaculous/slider.js]"></script>
+<script src="[File:/js/scriptaculous/dragdrop.js]"></script>
+<script src="[File:/css/bootstrap/js/bootstrap.js]"></script>
+<script src="[File:/js/jQuery.noConflict.js]"></script>
+<script src="[File:/js/jQuery/jquery.class.js]"></script>
+
+<script src="[File:/js/utilities.js]"></script>
+<script src="[File:/js/form-validation/jquery.validate.js]" type="text/javascript"></script>
+
+<script src="[File:/js/jQuery/opc-checkout.js]"></script>
+<script src="[File:/js/jQuery/one-step-checkout.js]"></script>
+
+<script src="[File:/js/product_attributes.js]"></script>
+<script src="[File:/js/general.js]"></script>
+<script src="[File:/js/varien/product.js]"></script>
+<script src="[File:/js/varien/image-tool.js]"></script>
+
+<script src="[File:/js/Product.Zoom.js]"></script>
+<script src="[File:/js/ProductZoom.class.js]"></script>
+<script src="[File:/js/imgcentering.js]"></script>
+<script src="[File:/js/imgcentering.js]"></script>
+
+<link href="[File:/css/multizoom/jquery.jqzoom.css]" rel="stylesheet" type="text/css"/>
+
+<link href="[File:/css/promoheader/promoheader.css]" rel="stylesheet" type="text/css"/>
+<script src="[File:/js/PromoHeader/slides.min.jquery.js]"></script>
+<script type="text/javascript" src="[File:/js/jquery-ui.min.js]"></script>
+<link href="[File:/css/jQuery-ui/jquery-ui.css]" rel="stylesheet" type="text/css"/>
+<script src="[File:/js/coolcarousel/jquery.coolcarousel-6.0.4-packed.js]"></script>
+<script src="[File:/js/IncraBlog.js]"></script>
+
+<!-- custom css files  -->
+<link rel="stylesheet" type="text/css" href="[File:/css/fa/css/font-awesome.css]">
+<link rel="stylesheet" type="text/css" href="[File:/css/style1.css]">
+<link href="[File:/css/dev-toolbar.css]" rel="stylesheet" type="text/css"/>
+<link href="[File:/css/bootstrap/css/bootstrap.css]" rel="stylesheet" type="text/css"/>
+
+<style type="text/css">
+    @media (max-wdth: 768px) {
+        .text-xs-left {
+            text-align: left ;
+        }
+
+        .text-xs-right {
+            text-align: right;
+        }
+
+        .text-xs-center {
+            text-align: center;
+        }
+
+        .text-xs-justify {
+            text-align: justify;
+        }
+    }
+    @media (min-width: 768px) {
+        .text-sm-left { text-align: left; }
+        .text-sm-right { text-align: right;}
+        .text-sm-center { text-align: center; }
+        .text-sm-justify { text-align: justify; }
+    }
+
+    @media (min-width: 992px) {
+        .text-md-left { text-align: left; }
+        .text-md-right { text-align: right; }
+        .text-md-center { text-align: center;}
+        .text-md-justify { text-align: justify; }
+    }
+
+    @media (min-width: 1200px) {
+        .text-lg-left { text-align: left; }
+        .text-lg-right { text-align: right;}
+        .text-lg-center { text-align: center;}
+        .text-lg-justify { text-align: justify; }
+    }
+</style>
+
+<!-- Incra Theme definition -->
+<!--Delete <style type="text/css">
+
+	body{
+		color: [Theme.MainTextColor];
+	}
+	.topnav-container{
+    	background: [Theme.PrimaryColor];
+	}
+	a,.btn-link{
+		color: [Theme.LinksColor];
+	}
+	a:hover,.btn-link:hover, .toolbar span.disabled{
+		color: [Theme.HoverLinksColor];
+	}
+	.toolbar a{
+		color:inherit;
+	}
+	.btn-primary{
+		background-color: [Theme.ButtonBackgroundColor];
+		border-color: [Theme.ButtonBackgroundColor];
+		color: [Theme.ButtonTextColor];
+	}
+	.btn-primary:hover{
+		background-color: [Theme.ButtonHoverBackgroundColor];
+		border-color: [Theme.ButtonHoverBackgroundColor];
+		color: [Theme.ButtonHoverTextColor];
+	}
+	.btn-inverted{
+		background-color: [Theme.ButtonHoverBackgroundColor];
+		border-color: [Theme.ButtonHoverBackgroundColor];
+		color: [Theme.ButtonHoverTextColor];
+	}
+	.btn-inverted:hover{
+		background-color: [Theme.ButtonBackgroundColor];
+		border-color: [Theme.ButtonBackgroundColor];
+		color: [Theme.ButtonTextColor];
+	}
+	.btn{
+		[?Theme.ButtonBorderStyle|Default=
+				border-radius: 0px;
+			|No Border=
+				border:none;
+		]
+	}
+
+	/* HEADER */
+
+	/* left nav */
+    .left-category-menu ul > li > a.current,
+	.left-category-menu ul > li.sub-item > a.current{
+		color: [Theme.HoverLinksColor];
+        font-weight:bold;
+	}
+	.navbar-default li:hover { background-color : [Theme.PrimaryColor]; color:[Theme.PrimaryContrastColor]; }
+	.navbar-default .dropdown:hover { background-color : [Theme.PrimaryColor]; color:[Theme.PrimaryContrastColor]; }
+	.navbar-default .dropdown:hover > a{ color:[Theme.PrimaryContrastColor]; }
+	.navbar-default .navbar-nav > li > a:hover{ color: [Theme.PrimaryContrastColor] }
+	.navbar-default .dropdown-menu > li > a:hover { background-color: [Theme.PrimaryColor];color:[Theme.PrimaryContrastColor]; }
+	
+	/* Pagination */
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+		color: [Theme.PrimaryContrastColor];
+		background-color: [Theme.PrimaryColor];
+		border-color: [Theme.PrimaryColor];
+	}
+	.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
+		color: [Theme.PrimaryColor];
+	}
+	.pagination > li > a, .pagination > li > span{
+		color: [Theme.MainTextColor];
+	}
+	/* footer */
+	.footer-links ul li a:hover{ color:[Theme.PrimaryColor]; }
+
+	/* Checkout */
+	#checkoutSteps .checkout-block.active .title .circle-number{
+		background: [Theme.PrimaryColor];
+		color: [Theme.PrimaryContrastColor]; 
+	}
+
+	/* customer */
+	.customer-account-navigation li.active{ background-color: [Theme.ButtonHoverBackgroundColor];color:[Theme.ButtonHoverTextColor]; }
+	.customer-account-navigation li.active a{color:[Theme.ButtonHoverTextColor];}
+
+	/* Utitlities */
+
+	/* Slider css */
+	.carousel-control.right,.carousel-control.left{
+		background: none;
+	}
+	.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next,
+	.carousel-control .glyphicon-chevron-left{
+		color: #ddd;
+	}
+	.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {
+		margin-left: -20px;
+	}
+	.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+		margin-right: -20px;
+	}
+	.carousel-control{
+		width:5%;
+	}
+</style> -->
+
+<!-- Essentials -->
+<link href="[File:/css/styles.css]" rel="stylesheet" type="text/css"/>
+<link href="[File:/css/dev-toolbar.css]" rel="stylesheet" type="text/css"/>
+<script src="[File:/js/IncraToolbar.js]"></script>
+<link href="[File:/css/incra-chat-client.css]" rel="stylesheet" type="text/css"/>
+
+<!-- Dev toolbar -->
+<link href="[File:/css/dev-toolbar.css]" rel="stylesheet" type="text/css"/>
+
+<!-- GloBAL js codes -->
+[:CountryAddressJs]
+[:HeadGlobalJS]
+<link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
+
+<!-- ## DESIGN VARIATION ##################################################################################################################### -->
+
+<!-- DesignVariation loading css -->
+	<!-- <link href="[File:/css/DesignVariationCss/vHeaderType.Travelli.css]" rel="stylesheet" type="text/css"/> -->
+	[?General.isEmpty,[Design.DesignSelectionName,vHeaderType]|yes=
+	<link href="[File:/css/DesignVariationCss/vHeaderType.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vHeaderType.[DesignLayout.HeaderType].css]" rel="stylesheet" type="text/css"/>
+	]
+			<!-- additional styles for headertype design variation -->
+			[?DesignLayout.HeaderType|Travelli=
+				<style type="text/css">
+					.header .navbar-default,.header .mainmenu-container{
+						background-color: #efefef;
+					}
+					.header .navbar-default .navbar-nav > li:hover > a{
+						color: [Theme.PrimaryContrastColor]
+					}
+					.header .navbar-default .navbar-nav > li > a{
+						color: [Theme.PrimaryColor];
+					}
+					.header .navbar-default .navbar-nav > li > a:hover,.header .navbar-default .dropdown:hover{
+						background-color: [Theme.PrimaryColor];
+						color: [Theme.PrimaryContrastColor]
+					}
+					.header .cart-wishlist-link li a:hover .badge{
+						background-color: [Theme.PrimaryColor];
+					}
+				</style>
+				|MenuBottomSliderBg=
+				<style type="text/css">
+					.MenuBottomSliderBg .navbar-default .navbar-nav > li > a{
+						color:[Theme.PrimaryContrastColor];
+					}
+				</style>
+				|ECommerceLayout1=
+				<style type="text/css">
+					.ECommerceLayout1.MainMenu .navbar-default .navbar-nav > li > a{
+						color:[Theme.PrimaryContrastColor];
+					}
+					.ECommerceLayout1.MainMenu .navbar-default,.header .mainmenu-container{
+						background-color: #efefef;
+					}
+					.ECommerceLayout1.MainMenu .navbar-default .navbar-nav > li:hover > a{
+						color: [Theme.PrimaryContrastColor]
+					}
+					.ECommerceLayout1.MainMenu .navbar-default .navbar-nav > li > a{
+						color: [Theme.PrimaryColor];
+					}
+					.ECommerceLayout1.MainMenu .navbar-default .navbar-nav > li > a:hover,.header .navbar-default .dropdown:hover{
+						background-color: [Theme.PrimaryColor];
+						color: [Theme.PrimaryContrastColor]
+					}
+				</style>
+			]
+			<!-- Breadcrumbs design variation -->
+			[?Design.DesignSelectionName,vBreadCrumbs|BarWithShadow=
+				<style type="text/css">
+					.breadcrumb > li + li:before{
+						content: "\e080";
+						font-family: 'Glyphicons Halflings';
+						font-size: 10px;
+					}
+				</style>
+			]
+
+	<!-- Toolbar -->
+	[?General.isEmpty,[Design.DesignSelectionName,vToolbar]|yes=
+	<link href="[File:/css/DesignVariationCss/vToolbar.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vToolbar.[Design.DesignSelectionName,vToolbar].css]" rel="stylesheet" type="text/css"/>
+	]
+	<!-- ProductListItem -->
+	[?General.isEmpty,[Design.DesignSelectionName,vProductListItem]|yes=
+	<link href="[File:/css/DesignVariationCss/vProductListItem.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vProductListItem.[Design.DesignSelectionName,vProductListItem].css]" rel="stylesheet" type="text/css"/>
+	]
+		[?Design.DesignSelectionName,vProductListItem|WithImageGallery=
+			<script type="text/javascript">
+			    function swicthThumbnailImage(obj){
+			    	var id = jQuery(obj).attr('data-product-id');
+			    	var thumbnail = jQuery(obj).attr('data-image-url');
+			    	jQuery("#thumbnail-image-"+id).attr('src',thumbnail);
+			    }
+			    function resetThumbnailImage(obj){
+			    	var id = jQuery(obj).attr('data-product-id');
+			    	var default_image = jQuery(obj).attr('data-default-image-url');
+			    	jQuery("#thumbnail-image-"+id).attr('src',default_image);
+			    }
+			</script>
+		]
+		
+	[?General.isEmpty,[Design.DesignSelectionName,vFooterType]|yes=
+	<link href="[File:/css/DesignVariationCss/vFooterType.css]" rel="stylesheet" type="text/css"/>	
+	|no=
+	<link href="[File:/css/DesignVariationCss/vFooterType.[DesignLayout.FooterType].css]" rel="stylesheet" type="text/css"/>	
+	]
+		<!-- additional styles for headertype design variation -->
+			[?DesignLayout.FooterType|Layout1=
+				<style type="text/css">
+					.footer-block{
+						/*margin-top: 10px;*/
+						background-color: #222;
+					}
+					.footer-block dt{
+						color: [Theme.PrimaryColor];
+					}
+					.footer-block h1,.footer-block h2,.footer-block h3,.footer-block h4,.footer-block h5{
+						text-transform: uppercase;
+						font-weight: bold;
+					}
+					.footer-block h1,.footer-block h2,.footer-block h3,.footer-block h4,.footer-block h5,.footer-block dd{
+						color:#eee;
+					}
+					.footer-block a,.footer-block p{
+						color: #858585;
+					}
+					.footer-block a:hover{
+						color: [Theme.HoverLinksColor];
+					}
+					.footer-block .newsletter-block input::-webkit-input-placeholder{
+						color:#fff;
+					}
+				</style>
+			]
+	[?General.isEmpty,[Design.DesignSelectionName,vProductMediaImage]|yes=
+		<link href="[File:/css/DesignVariationCss/vProductMediaImage.css]" rel="stylesheet" type="text/css"/>
+	|no=
+		<link href="[File:/css/DesignVariationCss/vProductMediaImage.Magnify.css]" rel="stylesheet" type="text/css"/>
+	]
+	
+	[?General.isEmpty,[Design.DesignSelectionName,vProductQuantityBlock]|yes=
+	<link href="[File:/css/DesignVariationCss/vProductQuantityBlock.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vProductQuantityBlock.[Design.DesignSelectionName,vProductQuantityBlock].css]" rel="stylesheet" type="text/css"/>
+	]
+	
+	[?General.isEmpty,[Design.DesignSelectionName,vProductColorAttribute]|yes=
+	<link href="[File:/css/DesignVariationCss/vProductColorAttribute.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vProductColorAttribute.[Design.DesignSelectionName,vProductColorAttribute].css]" rel="stylesheet" type="text/css"/>
+	]
+		<!-- ProductColorAttribute -->
+		[?Design.DesignSelectionName,vProductColorAttribute|ColorPalleteRound=
+			<style type="text/css">
+				.ColorPalleteRound .color-item.active{
+					border: 4px solid #4E5F97;
+				}	
+			</style>
+		]
+		[?Design.DesignSelectionName,vProductColorAttribute|ColorPalleteSquare=
+			<style type="text/css">
+				.ColorPalleteSquare .color-item.active{
+					border: 4px solid #4E5F97;
+				}
+			</style>
+		]
+	[?General.isEmpty,[Design.DesignSelectionName,vProductSizeAttribute]|yes=
+	<link href="[File:/css/DesignVariationCss/vProductSizeAttribute.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vProductSizeAttribute.[Design.DesignSelectionName,vProductSizeAttribute].css]" rel="stylesheet" type="text/css"/>
+	]
+	[?General.isEmpty,[Design.DesignSelectionName,vSideCategoryNavigationBlock]|yes=
+	<link href="[File:/css/DesignVariationCss/vSideCategoryNavigationBlock.css]" rel="stylesheet" type="text/css"/>
+	|no=
+	<link href="[File:/css/DesignVariationCss/vSideCategoryNavigationBlock.[Design.DesignSelectionName,vSideCategoryNavigationBlock].css]" rel="stylesheet" type="text/css"/>
+	]
+
+		[?Design.DesignSelectionName,vProductContentLayout|PicInfoTabs=
+			<style type="text/css">
+				.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+					color: #555;
+					cursor: default;
+					background-color: #f0f0f0;
+					border: 1px solid #ddd;
+					border-bottom-color: transparent;
+				}
+			</style>
+		]
+
+		<!--
+		<style type="text/css">
+			.box-offer {
+				position: relative;
+				padding: 15px;
+				min-height: 280px;
+				margin-right: auto;
+				margin-left: auto;
+				text-align: center;
+				color: #fff;
+			}
+			.box-offer-inner {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100%;
+				text-align: center;
+				-webkit-transform: translate(-50%,-50%);
+				transform: translate(-50%,-50%);
+			}
+			.box-offer .icon {
+				font-size: 63px;
+				width: 68px;
+				height: 68px;
+				line-height: 68px;
+			}
+			.box-offer .box-offer-title {
+				margin-top: 5px;
+				font-size: 18px;
+				font-weight: 700;
+				font-family: "PT Sans",sans-serif;
+				text-transform: uppercase;
+				letter-spacing: .04em;
+				color: rgba(255,255,255,.7);
+			}
+			.box-offer .box-offer-title a {
+				color: rgba(255,255,255,.7);
+			}
+			.box-offer .box-offer-desc {
+				margin-top: 10px;
+				padding-right: 12%;
+				padding-left: 12%;
+				line-height: 1.5;
+				color: rgba(255,255,255,.7);
+			}
+			.box-offer .box-offer-desc {
+				margin-top: 25px;
+			}
+			.box-offer-bg-img-1 {
+				background: #fbb103;
+			}
+			.box-offer-bg-img-2 {
+				background: #cc3f3a url("../../frontend/TemplateMonster/theme048/en_US/images/offer-bg-2.jpg") no-repeat center/cover;
+			}
+			.box-offer-bg-img-3 {
+				background: #95b84e url("../../frontend/TemplateMonster/theme048/en_US/images/offer-bg-3.jpg") no-repeat center/cover;
+			}
+			
+		</style>
+		-->
+	[:AdditionalDesignVariationCss]
+<!-- END DesignVariation loading css -->
+
+<!-- DesignVariation loading JS -->
+	[?General.isEmpty,[Design.DesignSelectionName,vProductMediaImage]|yes=
+	<script src="[File:/js/VariationJs/vProductMediaImage.js]"></script>
+	|no=
+	<script src="[File:/js/VariationJs/vProductMediaImage.[Design.DesignSelectionName,vProductMediaImage].js]"></script>
+	]
+	
+	[:AdditionalDesignVariationJs]
+<!-- END DesignVariation loading JS -->
+
+<!-- ######################################################################################################################################### -->
+
+
+
+<script src="[File:/js/CryptoJSv312/rollups/md5.js]"></script>
+<script src="[File:/js/CryptoJSv312/rollups/hmac-sha256.js]"></script>
+<script src="[File:/js/CryptoJSv312/rollups/tripledes.js]"></script>
+<script src="[File:/js/IncraAuth/IncraAuth.js]"></script>
+<script src="[File:/js/IncraAuth/IncraLogin.js]"></script>

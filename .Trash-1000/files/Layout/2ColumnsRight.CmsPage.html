@@ -1,0 +1,27 @@
+[?CmsPage.Header|Yes=
+    [:HeaderBlock]
+]
+<div class="two-columns-right [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container]">
+	[:vBreadcrumbs]
+	[:Notification]
+	<div class="main-content ">
+		<div class="col-md-9 main-content " style="min-height: 400px;">
+			<div class="row">
+				[:mainContent]
+			</div>
+		</div>
+        [?CmsPage.RightCol|Yes=
+		    <div class="col-md-3 right-column">
+			    [:RightColumnType?DesignLayout.RightColumnType]
+		    </div>
+        ]
+	</div>
+</div>
+[?CmsPage.Footer|Yes=
+    <div class="footer-block">
+        <div class="footer-container col-md-12">
+            [:FooterBlock]
+        </div>
+    </div>
+]
+

@@ -1,0 +1,46 @@
+<div class="row product-img-box" style="" data-toggle="modal" data-target="#product-image-view">
+	[?Product.BaseImageEmpty|No=
+	   	<img width="100%" id="image" src="/[Product.BaseImage=[ProductImage.ImageUrl]]" alt="" title="" class="img-responsive"/>
+	   	|Yes=
+		<img id="image" src="[File:/images/no_image.png]" alt="" title="" width="265"/>
+	]
+</div>
+<div class="row">
+	<hr/>
+</div>
+<div class="row product-gallery">
+	<div class="image-thumbnail col-md-12 incra-block">
+		[Product.Images,3=
+			<div class="col-md-4">
+				
+					<a class="" href="#" onclick="setAsMainImage(this,'/[ProductImage.ImageUrl]','/[ProductImage.ImageUrl]');return false;" target="new" title="[ProductImage.Label]">
+						[?Product.SmallImageEmpty|yes=
+							<img class="img-thumbnail" src="[File:/images/no_image.png]" title="[ProductImage.Label]" class="" />
+							|No=
+							<img class="img-thumbnail" src="/[ProductImage.ImageUrl,100,125]" title="[ProductImage.Label]" class="" />
+						]
+					</a>
+				
+			</div>
+		]
+	</div>
+</div>
+<div id="product-image-view" class="modal fade text-center" tabindex="-1" role="dialog" aria-labelledby="">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			[?Product.BaseImageEmpty|No=
+			   	<img id="image" src="/[Product.BaseImage=[ProductImage.ImageUrl]]" alt="" title="" class="img-responsive" width="100%"/>
+			   	|Yes=
+				<img id="image" src="[File:/images/no_image.png]" alt="" title="" width="265"/>
+			]
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function setAsMainImage(obj,original_image,base_image){
+		jQuery("#image").attr('src',base_image);
+		jQuery("#large-image").attr('src',original_image);
+		jQuery(".product-gallery .image-thumbnail a").removeClass("active");
+		jQuery(obj).addClass('active');
+	}
+</script>

@@ -1,0 +1,39 @@
+/*
+*	Renders CheckOutFailInvalidCodePage during the checkout process.  This contains the message the code is invalid.
+Error: The payment provider gave a none matching security code. If you had a genuine order, please contact the shop owner
+*/
+/** -------------------------------------------------------------------
+Name:              CheckOutFailInvalidCodePage
+Location:          /Html/Checkout/CheckOutFailInvalidCodePage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 17:06 (relocation)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Calling blocks:    footer 	header 	head 	
+Calling unknown:   MetaData,[_Checkout Fail - Invalid Code] 	
+--------------------------------------------------------------------**/
+
+
+
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Fail - Invalid Code]]
+	[:head]
+	
+</head>
+<body>
+	<div class="page pagenotfound">
+		[:HeaderBlock]
+		<div class="once-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container] ">
+			[:Notification]
+			<div class="main-content " style="min-height: 200px;">
+				<div class="alert alert-warning">
+				    [_The payment failed and the payment provider gave a wrong security code. Maybe the payment was tampered.] [_Please contact the <a href="mailto:%1">store owner</a> if this was a genuine attempt to pay.,[Configuration.StoreInfoMainEMail]]
+				</div> 
+			</div>
+		</div>
+		[:FooterBlock]
+	</div>
+</body>
+</html>

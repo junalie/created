@@ -1,0 +1,24 @@
+ <!-- Reply comment form -->
+<div class="reply-form col-md-12">
+	<hr style="margin-top: 0px;margin-bottom: 10px" />
+	<div class="user-avatar reply-user-avatar" style="">
+		<img src="/[BlogComment.CustomerId=[Customer.Avatar]]" width="35" />
+	</div>
+	<div class="reply-content">
+		<div class="col-md-9" style="padding-left: 0px;">
+			<input id="post_comment[BlogItem.Id]" type="text" class="form-control" name="" placeholder="reply to post..."> 
+		</div>
+		<div class="col-md-3 text-right">
+			<div class="row">
+				<input type="file" class="comment_file[BlogItem.Id] hide" name="">
+				<a onclick="incra_blog.browseCommentImage([BlogItem.Id]); return false;" href="#" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture" style="color: #333">
+					<i class="fa fa-picture-o fa-lg"></i></a> &nbsp;
+				<button type="button" id="reply_comment" class="btn btn-primary" onclick="incra_blog.postComment([BlogItem.Id]); return false;">Submit</button>
+
+			</div>
+		</div>
+		<div class="col-md-12 files_to_be_upload_comment_[BlogItem.Id]" style="overflow: hidden;text-overflow: ellipsis;font-size:11px;padding-top: 5px;">
+			
+		</div>
+	</div>
+</div>

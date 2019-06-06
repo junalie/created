@@ -1,0 +1,22 @@
+/* Error: Could not process the payment. If you had a genuine order, please contact the shop owner */
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Success - Failed]]
+	[:head]
+	
+</head>
+<body>
+	[:HeaderBlock]
+	<div class="once-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container] ">
+		[:Notification]
+		<div class="main-content " style="min-height: 200px;">
+			[Website.StaticBlockContentParsed,CheckoutSuccess]
+			<div class="alert alert-warning">
+			   [_The payment was successful, but there was an internal error while trying to confirm your order. Please contact the <a href="mailto:%1">shop owner</a>.,[Configuration.StoreInfoMainEMail]]
+			</div> 
+		</div>
+	</div>
+	[:FooterBlock]
+</body>
+</html>

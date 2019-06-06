@@ -1,0 +1,347 @@
+<style type="text/css">
+	.blog-container{
+
+	}
+	.blog-container .user-avatar{
+		width: 50px;
+		height: 50px;
+		background: #eee;
+		border-radius: 25px;
+		float: left;
+		background: #eee;		
+		overflow:hidden;
+		border: 1px solid #ccc;
+	}
+	.blog-container .post-item{
+		margin-bottom: 10px;
+	}
+	.blog-container .post-header .user-avatar{
+		width: 50px;
+		height: 50px;
+	}
+	.blog-container .post-header .user-info{
+		float: left;
+	    padding-top: 5px;
+	    padding-left: 10px;
+	}
+	.blog-container .reply-content{
+		float: left;	    
+	    padding-left: 45px;
+	    width: 100%;
+	    font-size: 12px;
+	}
+	.blog-container .post-description{
+		padding: 15px 15px 3px 15px;
+	}
+	.blog-container .post-description p{
+		margin-bottom: 0px;
+	}
+	.blog-container .post-description .post-description-image-container div.imgs{
+		overflow:hidden;
+		padding-left: 0px;
+		padding-right: 0px;
+		height: 300px;
+	    background-position: fixed;
+	    -webkit-background-size: cover !important;
+	    background-size: cover !important;
+	    background-position: bottom;
+	    position: relative;
+
+		background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: center; 
+	}
+	.blog-container .post-description .post-description-image-container div.imgs:first-child{
+		border-right: 2px solid #fff;
+	}
+	.blog-container .blog-comment-form{
+		background-color: #f5f5f5;
+	}
+	.reply-item{
+		padding-bottom: 10px;
+		min-height: 50px;
+	}
+	.blog-container .user-avatar.reply-user-avatar{
+		width: 35px;
+		height: 35px;
+		position: absolute;
+	}
+	.blog-comment-form .reply-form{
+		position: relative;
+		padding-bottom: 10px;
+	}
+	.blog-item-title{
+		margin-top: 0px;
+	}
+	.blog-item-footnote{
+		font-style: italic;
+	}
+</style>
+<div class="container blog-container" style="margin-bottom: 30px;">
+	[:BlogPostNew]
+	[?Customer.LoggedIn|Yes=
+			[?Blog.CustomersCanAddPosts|Yes=
+				[:BlogPostNew]
+			]
+		|No=
+			[?Blog.GuestsCanAddPosts|Yes=
+				[:BlogPostNew]
+			]
+	]
+	<div class="row">
+		<div id="blog_container" class="col-md-6">
+			[Blog.Items= 
+				<div class="col-md-12 post-item">
+					<div class="post-header row">
+						<div class="user-avatar">
+							<img src="/[BlogItem.CustomerId=[Customer.Avatar]]" width="50" />
+						</div>
+						<div class="user-info">
+							<strong>Rebel empire</strong>
+							<h6 style="margin-top: 0px;">[BlogItem.CreationDate]</h6>
+						</div>
+					</div>
+					<div class="row post-description">
+						[?General.isEmpty,[BlogItem.Title]|No=
+							<h5 class="blog-item-title">[BlogItem.Title]</h5>	
+						]
+						[?General.isEmpty,[BlogItem.Text]|No=
+							<p class="text-justify">
+								[BlogItem.Text]
+							</p>
+						]
+						[?General.isEmpty,[BlogItem.Images]|No=
+							<div class="post-description-image-container">
+								[BlogItem.Images=
+									<div class="col-md-6 imgs" style="background: url('/[BlogImage.ImageFile]') no-repeat"></div>
+								]
+							</div>
+						]
+						[?General.isEmpty,[BlogItem.Footnote]|No=
+							<h5 class="blog-item-footnote">[BlogItem.Footnote]</h5>
+						]
+					</div>
+					[:BlogPostCommentForm]
+				</div>
+			]
+			/*
+			<div class="col-md-12 post-item">
+
+				<div class="post-header row">
+					<div class="user-avatar">
+						<img src="http://cdn.shopify.com/s/files/1/0159/0074/articles/Galactic-Empire-Symbol-font-b-Logo-b-font-Vinyl-font-b-Decal-b-font-Sticker-Bumper_1024x1024.jpg?v=1482393044" width="50" />
+					</div>
+					<div class="user-info">
+						<strong>Rebel empire</strong>
+						<h6 style="margin-top: 0px;">20 mins ago</h6>
+					</div>
+				</div>
+				<div class="row post-description">
+					<h5 class="blog-item-title">[BlogItem.Title] Blog item title</h5>
+					<p class="text-justify">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+				</div>
+				
+				[:BlogPostCommentForm]
+			</div>
+			<div class="col-md-12 post-item">
+				<div class="post-header row">
+					<div class="user-avatar">
+						<img src="http://cdn.shopify.com/s/files/1/0159/0074/articles/Galactic-Empire-Symbol-font-b-Logo-b-font-Vinyl-font-b-Decal-b-font-Sticker-Bumper_1024x1024.jpg?v=1482393044" width="50" />
+					</div>
+					<div class="user-info">
+						<strong>Rebel empire</strong>
+						<h6 style="margin-top: 0px;">20 mins ago</h6>
+					</div>
+				</div>
+				<div class="row post-description">
+					<h5 class="blog-item-title">[BlogItem.Title] Blog item title</h5>
+					<p class="text-justify" style="padding-top: 5px;">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+					<div class="post-description-image-container">
+						<img src="https://i1.wp.com/www.techstand.org/wp-content/uploads/2017/12/oneplus-5t-star-wars-1.jpeg?resize=500%2C264" width="100%"/>
+					</div>
+					<h5 class="blog-item-footnote">[BlogItem.Footnote] Blog item footnote</h5>
+				</div>
+				[:BlogPostCommentForm]
+			</div>
+			<div class="col-md-12 post-item">
+				<div class="post-header row">
+					<div class="user-avatar">
+						<img src="http://cdn.shopify.com/s/files/1/0159/0074/articles/Galactic-Empire-Symbol-font-b-Logo-b-font-Vinyl-font-b-Decal-b-font-Sticker-Bumper_1024x1024.jpg?v=1482393044" width="50" />
+					</div>
+					<div class="user-info">
+						<strong>Rebel empire</strong>
+						<h6 style="margin-top: 0px;">20 mins ago</h6>
+					</div>
+				</div>
+				<div class="row post-description">
+					<p class="text-justify">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+					<div class="post-description-image-container">
+						<div class="col-md-6 imgs" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkhvV7FONDruGoi06FqhRUu9A1SqydcRDmVCKpyQHfuF88euavBw') no-repeat">
+							
+						</div>
+						<div class="col-md-6 imgs" style="background: url('http://media.comicbook.com/2017/12/star-wars-the-last-jedi-rey-daisy-ridley-1063086-640x320.jpeg') no-repeat">
+						</div>
+					</div>
+				</div>
+				[:BlogPostCommentForm]
+			</div>
+			*/
+		</div>
+	</div>
+	
+</div>
+<style>
+	.widget-area.blank {
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		-ms-box-shadow: none;
+		-o-box-shadow: none;
+		box-shadow: none;
+	}
+	body .no-padding {
+		padding: 0;
+	}
+	.widget-area {
+		background-color: #fff;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+		-webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+		-ms-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+		-o-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+		float: left;
+		margin-top: 30px;
+		padding: 25px 30px;
+		position: relative;
+		width: 100%;
+	}
+	.status-upload {
+		background: none repeat scroll 0 0 #f5f5f5;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+		float: left;
+		width: 100%;
+	}
+	.status-upload form {
+		float: left;
+		width: 100%;
+	}
+	.status-upload form input{
+		border: 1px solid #F2F2F2;	
+		color: #777777;
+		float: left;
+		font-family: Lato;
+		font-size: 14px;
+		letter-spacing: 0.3px;
+		padding: 20px;
+	}
+	
+	.status-upload form textarea {
+		background: none repeat scroll 0 0 #fff;
+		border: medium none;
+		-webkit-border-radius: 4px 4px 0 0;
+		-moz-border-radius: 4px 4px 0 0;
+		-ms-border-radius: 4px 4px 0 0;
+		-o-border-radius: 4px 4px 0 0;
+		border-radius: 4px 4px 0 0;
+		color: #777777;
+		float: left;
+		font-family: Lato;
+		font-size: 14px;
+		height: 142px;
+		letter-spacing: 0.3px;
+		padding: 20px;
+		width: 100%;
+		resize:vertical;
+		outline:none;
+		border: 1px solid #F2F2F2;
+	}
+
+	.status-upload ul {
+		float: left;
+		list-style: none outside none;
+		margin: 0;
+		padding: 0 0 0 15px;
+		width: auto;
+	}
+	.status-upload ul > li {
+		float: left;
+	}
+	.status-upload ul > li > a {
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+		color: #777777;
+		float: left;
+		font-size: 14px;
+		height: 30px;
+		line-height: 30px;
+		margin: 10px 0 10px 10px;
+		text-align: center;
+		-webkit-transition: all 0.4s ease 0s;
+		-moz-transition: all 0.4s ease 0s;
+		-ms-transition: all 0.4s ease 0s;
+		-o-transition: all 0.4s ease 0s;
+		transition: all 0.4s ease 0s;
+		width: 30px;
+		cursor: pointer;
+	}
+	.status-upload ul > li > a:hover {
+		background: none repeat scroll 0 0 #606060;
+		color: #fff;
+	}
+	.status-upload form button {
+		border: medium none;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+		color: #fff;
+		float: right;
+		font-family: Lato;
+		font-size: 14px;
+		letter-spacing: 0.3px;
+		margin-right: 9px;
+		margin-top: 9px;
+		padding: 6px 15px;
+	}
+	.dropdown > a > span.green:before {
+		border-left-color: #2dcb73;
+	}
+	.status-upload form button > i {
+		margin-right: 7px;
+	}
+</style>
+[:BlogPostBlockJS]

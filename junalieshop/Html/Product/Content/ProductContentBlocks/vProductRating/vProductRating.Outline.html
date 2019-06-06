@@ -1,0 +1,34 @@
+<style type="text/css">
+	.rating-box .rate-value span.glyphicon-star{
+		color: #ffa800;
+	}
+	.rating-box .rate-bg span.glyphicon-star-empty{
+		color: #ddd;
+	}
+</style>
+<div class="product-info-block-content">
+	<div class="clearfix">
+		<div class="rating-box [?Url.Model|Product=rating-box-md]">
+			<div class="rate-bg">
+				<span class="glyphicon glyphicon-star-empty"></span> 
+				<span class="glyphicon glyphicon-star-empty"></span> 
+				<span class="glyphicon glyphicon-star-empty"></span> 
+				<span class="glyphicon glyphicon-star-empty"></span> 
+				<span class="glyphicon glyphicon-star-empty"></span>
+			</div>
+			<div class="rate-value" style="width:[Product.Ranking]%">
+				<span class="glyphicon glyphicon-star"></span> 
+				<span class="glyphicon glyphicon-star"></span> 
+				<span class="glyphicon glyphicon-star"></span> 
+				<span class="glyphicon glyphicon-star"></span> 
+				<span class="glyphicon glyphicon-star"></span>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<a id="read" href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/ListReview/#read_review]">
+			[_%1 Review(s),[Product.NumberOfReviews]]
+		</a>
+		<!-- <a  class="write" href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/AddReview/#write_review]">[_Add Review]</a> -->
+	</div>
+</div>

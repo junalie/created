@@ -1,0 +1,28 @@
+<div class="form-group ColorPalleteRound incra-block clearfix">
+	<label>[Attribute.Title]</label>
+	<select [?Attribute.ValueRequired|Yes=required] name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttributeValue('[Attribute.AttributeCode]',this.value)" class="product-attrib form-control hide" >
+		<option value="">[_Please select]</option>
+		[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+			<option value="[AttributeOption.Id]" admin="[AttributeOption.Admin]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.DisplayValue]</option>
+	 	]
+	</select>
+	<div class="col-md-12">
+		[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+			<div class="inline-list color-item [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|Yes=active]" style="background-color:[AttributeOption.Color];"
+				value="[AttributeOption.Id]" admin="[AttributeOption.Admin]"
+				onclick="selectAttributeColor('[Attribute.AttributeCode]',[AttributeOption.Id],this);return false;"
+			>
+
+			</div>
+		]
+	</div>
+</div>
+
+<script type="text/javascript">
+	function selectAttributeColor(code,id,obj){
+		jQuery("#attribute[Attribute.Id][Product.Id]").val(id);
+		attrib.selectAttribute();
+		/*jQuery(".ColorPalleteRound .color-item").removeClass('active');
+		jQuery(obj).addClass("active");*/
+	}
+</script>

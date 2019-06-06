@@ -1,0 +1,135 @@
+ <li>
+    <div class="row">
+        <div class="col-md-2"  [?CountryConfig.ShowTitle|Yes=style="display:block"]>
+            <label class="required" for="[General.Param1]_title">[_Title]</label>
+            <input type="text" class="form-control input-text " title="[_title]" name="title" id="[General.Param1]_title" value="">
+        </div>
+        <div class="col-md-4">
+            <label class="required" for="[General.Param1]_firstname">[_First Name] <em>*</em></label>
+            <input type="text" class="form-control input-text required " title="[_firstname]" name="firstname" id="[General.Param1]_firstname" value="">
+        </div>
+        <div [?CountryConfig.ShowMiddleName|Yes= class="col-md-2" style="display:block"]>
+            <label class="required" for="[General.Param1]_firstname">[_Middle Name] </label>
+            <input type="text" class="form-control input-text " title="[_middle]" name="middlename" id="[General.Param1]_middlename" value="">
+        </div>
+        <div class="col-md-4">
+            <label class="required" for="[General.Param1]_lastname">[_Last Name] <em>*</em></label>
+            <input type="text" class="form-control input-text required" name="lastname" title="[_lastname]" id="[General.Param1]_lastname" value="">
+        </div>
+    </div>
+</li>
+
+<li>
+	<label for="[General.Param1]_company">[_Company]</label>
+	<input type="text" id="[General.Param1]_company" name="company" value="" title="[_Company]" class="form-control input-text" />
+</li>
+
+<li class="street_housenumber_wrapper">
+  
+    [?CountryConfig.ShowHouseNumberBeforeStreet|Yes=
+        <div class="row">
+        [?CountryConfig.ShowHouseNumberSeperate|Yes=
+            <div class="col-md-3">
+                <label class="" for="[General.Param1]_housenumber">[_House Number] <em>*</em></label>
+                <input type="number" class="form-control input-text required" title="[_House number]" name="house_number" id="[General.Param1]_housenumber" value="">
+            </div>
+            
+            [?CountryConfig.ShowHouseNumberExtension|Yes=
+                <div class="col-md-3">
+                    <label class="" for="[General.Param1]_housenumberext">[_House Number Ext.]</label>
+                    <input type="text" class="form-control input-text" title="[_House number extension]" name="house_number_ext" id="[General.Param1]_housenumberext" value="">
+                </div>
+            ]
+             <div class="col-md-6">
+                <label class="required" for="[General.Param1]_address1">[_Street] <em>*</em></label>
+                <input type="text" class="form-control input-text address-field required"  value="" id="[General.Param1]_address1" title="[_Street]" name="street">
+            </div>
+        |No=
+             <div class="col-md-6">
+                <label class="required" for="[General.Param1]_address1">[_Address] <em>*</em></label>
+                <input type="text" class="form-control input-text address-field required"  value="" id="[General.Param1]_address1" title="[_Address]" name="street">
+            </div>
+        ]
+       </div>
+    |=
+        <div class="row">
+        [?CountryConfig.ShowHouseNumberSeperate|Yes=
+            <div class="col-md-6">
+                <label class="required" for="[General.Param1]_address1">[_Street] <em>*</em></label>
+                <input type="text" class="form-control input-text address-field required"  value="" id="[General.Param1]_address1" title="[_Street]" name="street">
+            </div>
+            <div class="col-md-3">
+                <label class="" for="[General.Param1]_housenumber">[_House Number] <em>*</em></label>
+                <input type="number" class="form-control input-text required" title="[_House number]" name="house_number" id="[General.Param1]_housenumber" value="">
+            </div>
+            
+            [?CountryConfig.ShowHouseNumberExtension|Yes=
+                <div class="col-md-3">
+                    <label class="" for="[General.Param1]_housenumberext">[_House Number Ext.]</label>
+                    <input type="text" class="form-control input-text" title="[_House number extension]" name="house_number_ext" id="[General.Param1]_housenumberext" value="">
+                </div>
+            ]
+        |No=
+            <div class="col-md-6">
+                <label class="required" for="[General.Param1]_address1">[_Address] <em>*</em></label>
+                <input type="text" class="form-control input-text address-field required"  value="" id="[General.Param1]_address1" title="[_Address]" name="street">
+            </div>
+        ]
+        </div>
+    ]
+</li>
+
+<li>
+    <div class="row">
+        <div class="col-md-12" [?CountryConfig.ShowAddressLine2|Yes=style="display:block"]>
+        <input type="text" class="form-control input-text address-field"  value="" id="[General.Param1]_address2" title="[_address2]" name="street2">
+        </div>
+    </div>   
+</li>
+<li class="postalcode_state_wrapper">
+	<div class="row">
+     [?CountryConfig.ShowPostalCode|Yes=
+        [?CountryConfig.ShowPostalCodeBeforePlace|Yes=
+        <div class="col-md-4">
+            <label class="required" for="[General.Param1]_postal_code">[_Zip/Postal Code] [?CountryConfig.PostalCodeRequired|Yes=<em>*</em>]</label>
+            <input type="text" class="form-control input-text [?CountryConfig.PostalCodeRequired|Yes=required]"  value="" id="[General.Param1]_postal_code" title="[_zip/postal code]" name="postcode">
+        </div>
+        ]
+    ]
+		<div class="col-md-4">
+			<label class="required" for="[General.Param1]_city">[_City]<em>*</em></label>
+			<input type="text" class="form-control input-text required"  value="" id="[General.Param1]_city" title="[_address]" name="city">
+		</div>
+        [?CountryConfig.ShowRegion|Yes=
+            <div class="col-md-4">
+                <label class="" for="[General.Param1]_province_id">[_State/Province]  <em></em></label> 
+                <input type="text" class="form-control input-text" value="" name="region">
+                <select class="form-control validate-select" id="[General.Param1]_province_id" name="region_id" >
+                    <option value="">[_Please select state]</option>
+                    [Country.States=
+                        <option value="[State.Id]">[State.Name]</option>
+                    ]
+                </select>
+                <script type="text/javascript">
+                	//jQuery('#[General.Param1]_province_id').val('');
+                </script>
+            </div>
+        ]
+	</div>
+</li>
+<li class="postalcode_afterplace_wrapper">
+	<div class="row">
+        [?CountryConfig.ShowPostalCode|Yes=
+            [?CountryConfig.ShowPostalCodeBeforePlace|No=
+                <div class="col-md-6">
+                    <label class="required" for="[General.Param1]_postal_code">[_Zip/Postal Code] [?CountryConfig.PostalCodeRequired|Yes=<em>*</em>]</label>
+                    <input type="text" class="form-control input-text [?CountryConfig.PostalCodeRequired|Yes=required]"  value="" id="[General.Param1]_postal_code" title="[_zip/postal code]" name="postcode">
+                </div>
+            ]
+        ]
+		<div class="col-md-6">
+			<label class="required" for="[General.Param1]_telephone">[_Telephone] <em>*</em></label>
+			<input type="text" id="[General.Param1]_telephone" class="form-control input-text required" value="" name="telephone" title="[_telephone]">
+		</div>
+	</div>
+</li>

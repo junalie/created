@@ -1,0 +1,116 @@
+<ul class="list-unstyled">
+	<li class="">
+		<div class="row">
+			<div class="large-6 columns">
+				<label class="required" for="billing_country_id">[_Country]<em>*</em></label>
+				<select class="form-control input-text validation-select required" id="billing_country_id" name="country_id" onchange="setBillingCountryConfigAdvance(this.value); ">
+					<option value="">[_Please select country]</option>
+					[Website.AvailableCountries=
+						[CountryGroup.Countries=<option value="[Country.Id]">[Country.Name]</option>]
+					]
+				</select>
+				<script type="text/javascript">
+                    jQuery(document).ready(function(){
+					   jQuery("#billing_country_id option\[value=[Configuration.DefaultCountryId]\]").attr("selected","selected");
+    					[?ShoppingCart.BillingAddressComplete|Yes=
+    						jQuery("#billing_country_id").val([ShoppingCart.InvoiceAddress=[Address.CountryId]]);
+    						jQuery("#billing_country_id").trigger("onchange");
+    					|No=
+	    					if (jQuery('#billing_country_id').val())
+	                        	jQuery('#billing_country_id').trigger("onchange");
+                       	]
+                    })
+				</script>
+			</div>
+		</div>
+	</li>
+   
+    [:GeneralAddressFields, billing]
+
+	[?Customer.LoggedIn|Guest=
+		<li>
+            <div class="row">
+                <div class="large-6 columns">
+			        <label class="required " for="billing_email">[_Email] <em>*</em></label>
+			        <input type="text" class="form-control input-text email required large-6 columns"  value="[ShoppingCart.InvoiceAddress=[Address.EMail]]" id="billing_email" title="[_email]" name="email">
+                </div>
+                [?Customer.LoggedIn|Guest=
+					[?ShoppingCart.AllowGuestCheckOut|No=
+						[?ShoppingCart.BillingAddressComplete|No=
+						[?Configuration.CustomerShowTaxNumber|Yes=
+						 <div class="large-6 columns">
+					        <label class="required " for="customer_vat">[_Vat] [?Configuration.CustomerRequiredTaxNumber|Yes=<em>*</em>]</label>
+					        <input type="text" class="form-control input-text [?Configuration.CustomerRequiredTaxNumber|Yes=required] large-6 columns"  id="customer_vat" name="taxvat">
+		                </div>
+		                ]
+		                ]
+					]
+				]
+            </div>
+		</li>
+	]
+	
+	[?Customer.LoggedIn|Guest=
+		[?ShoppingCart.AllowGuestCheckOut|No=
+		[?ShoppingCart.BillingAddressComplete|No=
+		<li>
+            <div class="row">
+            	[?Configuration.CustomerShowDateOfBirth|Yes=
+                <div class="large-6 columns">
+                    <label class="required" for="datePicker">[_Date of Birth] [?Configuration.CustomerRequiredDateOfBirth|Yes=<em>*</em>]</label>
+                    <div class="input-group input-append date" id="datePicker">
+		                <input type="text" class="form-control" name="dateofbirth"  title="[_Date of Birth]" class="[?Configuration.CustomerRequiredDateOfBirth|Yes=required]" />
+		                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+		            </div>
+		            
+                </div>
+                ]
+                [?Configuration.CustomerShowGender|Yes=
+                <div class="large-6 columns">
+                    <label class="required" for="gender">[_Gender] [?Configuration.CustomerRequiredGender|Yes=<em>*</em>]</label>
+                    <select id="gender" name="gender" title="[_Gender]" class="[?Configuration.CustomerRequiredGender|Yes=required] form-control">
+						<option value=""></option>
+						<option value="male">[_Male]</option>
+						<option value="female">[_Female]</option>
+					</select>
+                </div>
+                ]
+            </div>
+		</li>
+
+		<li>
+            <div class="row">
+                <div class="col-md-12">
+                	<input type="checkbox" class="input-text" id="subscribe_newsletter" name="subscribe" >
+                    <label class="required" for="subscribe_newsletter">[_Subsribe to Newsletter]</label>
+                </div>
+               
+            </div>
+		</li>
+		
+		<li id="register-customer-password">
+            <div class="row">
+                <div class="large-6 columns">
+                    <label class="required" for="billing_customer_password">[_Password] <em>*</em></label>
+                    <input type="password" class="input-text required password form-control" id="billing_customer_password" name="customer_password" title="[_customer_password]">
+                </div>
+                <div class="large-6 columns">
+                    <label class="required" for="billing_confirm_password">[_Confirm Password] <em>*</em></label>
+                    <input type="password" class="input-text required cpassword form-control" id="billing_confirm_password"  name="confirm_password" title="[_confirm_password]">
+                </div>
+            </div>
+		</li>
+		]
+		]
+	]
+</ul>
+<ul class="list-unstyled">
+	[?Customer.LoggedIn|LoggedIn=
+		/*<li class="control">
+			<input type="checkbox" name="billing_save_in_address_book" value="1" title="[_Save in address book]" id="billing:save_in_address_book" onchange="" >
+				<label for="billing:save_in_address_book">[_Save in address book]</label>
+		</li>*/
+	|=
+		<li class="no-display"><input type="hidden" value="1" name="billing_save_in_address_book"></li>
+	]
+</ul>

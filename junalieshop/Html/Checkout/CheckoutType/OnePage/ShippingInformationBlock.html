@@ -1,0 +1,84 @@
+<div id="opc-shipping-info" class="checkout-block shipping-information" step="shipping" onclick="openCheckoutStep(this);">
+	<div class="title">
+		<div class="circle-number ">[General.Param1]</div>
+		<div class="step-header">
+			<a name="step_shipping"></a>
+			<h4>[_Shipping Information]</h4>
+		</div>
+	</div>
+	<div class="col-md-12 content ">
+		<div class="shipping-info-form">
+			<form action="" id="co-shipping-form">
+				<div class="col-md-10">
+					<ul class="list-unstyled shipping-info-list">
+					[?Customer.LoggedIn|LoggedIn=
+						[?Customer.NumberOfAddresses|0=
+						|=
+							<li class="wide">
+								<div class="row">
+							   		<label for="shipping-address-select">[_Select a shipping address from your address book or enter a new address.]</label>
+							   		<div class="col-md-10">
+										<select onchange="shipping.newAddress(this.value)" title="" class="address-select span5 form-control" id="shipping-address-select" name="shipping_address_id">
+											[Customer.Addresses=
+												<option  value="[Address.Id]" [?Address.DefaultShippingAddress|Yes=selected="selected"]>[Address.FirstName] [Address.LastName] [Address.StreetName], [Address.City],  [Address.PostalCode]  [Address.State],  [Address.Country=[Country.Name]] 
+												</option>
+											]
+											<option value="new">[_New Address]</option>
+										</select>
+									</div>
+									<div class="col-md-2">
+										<button class="btn" id="btn_shipping_toggle_edit_address" type="button" onclick="jQuery('#shipping-new-address-form').toggle(); shipping.setEdit();"><span>[_Edit Address]</span></button>
+									</div>
+								</div>
+							</li>
+						]
+					]
+						<li id="shipping-new-address-form" style="display:[?Customer.LoggedIn
+								|LoggedIn=[?Customer.NumberOfAddresses|more=none|1=none] |Guest=block]">
+							<div class="col-md-12" style="padding-top:20px;">
+									<div class="row new-address-panel">
+										[:ShippingAddressFields]
+									</div>
+							</div>
+						</li>
+					</ul>
+					
+					<ul class="list-unstyled shipping-address-options">
+						<li>
+							<input [?ShoppingCart.ShippingAndBillingAddressTheSame|Yes=checked="checked"] type="checkbox" name="same_as_billing" id="shipping_same_as_billing" value="1" title="[_Use Billing Address]" onclick="shipping.setSameAsBilling(this.checked)" />
+							<label for="shipping_same_as_billing" class="">[_Use Billing Address]</label>
+						</li>
+					</ul>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<hr/>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="buttons-set text-right">
+						[?Customer.LoggedIn|Guest=
+							<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+								<img src="[File:/images/i_asc_arrow.gif]"/> [_Back]
+							</a>
+						]
+						<span class="please-wait pull-left" id="shipping-please-wait" style="display:none;">
+							<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class=""> [_Loading next step...]        
+						</span>
+						<div class="required-fields"><em>* [_Required fields]</em></div>
+						<div class="incra-block">
+							<button type="button" class="btn btn-primary btn-md btn-checkout" onclick="shipping.save();return false;">
+								[_Continue]
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:ShippingInformationBlockJS]
+

@@ -1,0 +1,22 @@
+<!-- 
+	Files in AppJS contains the js codes for functionality of the block, this must not be overriden
+	to get updates and fixes.
+ -->
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#mini-search-button").click(function(){
+			doSearch();
+		});
+		jQuery("#product-search").keydown(function(event){
+			if(event.keyCode == 13) {
+				doSearch();
+			}
+		});
+	});
+	function doSearch(){
+		var str = jQuery('#product-search').val();
+		if (str.length==0)
+			return;
+		window.location = "[Website.GetUrl,Search,Text/]"+jQuery("#product-search").val();
+	}
+</script>

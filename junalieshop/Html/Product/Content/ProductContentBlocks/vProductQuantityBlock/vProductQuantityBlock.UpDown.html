@@ -1,0 +1,36 @@
+<div class="">
+	<div class="quantity-block form-inline">
+		<div class="quantity form-group">
+			<label for="qty">[_Qty:]</label>
+			<div class="input-group spinner">
+				<input name="qty" id="qty" type="text" class="form-control text-center" value="1" min="0" max="5">
+				<div class="input-group-btn-vertical">
+				  	<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+				  	<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(function(){
+	    jQuery('.spinner .btn:first-of-type').on('click', function() {
+	      var btn = jQuery(this);
+	      var input = btn.closest('.spinner').find('input');
+	      if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {    
+	        input.val(parseInt(input.val(), 10) + 1);
+	      } else {
+	        btn.next("disabled", true);
+	      }
+	    });
+	    jQuery('.spinner .btn:last-of-type').on('click', function() {
+	      var btn = jQuery(this);
+	      var input = btn.closest('.spinner').find('input');
+	      if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {    
+	        input.val(parseInt(input.val(), 10) - 1);
+	      } else {
+	        btn.prev("disabled", true);
+	      }
+	    });
+	})
+</script>

@@ -1,0 +1,26 @@
+<div class="product-reviews-block" id="read_review">
+	<div id="read_review" class="incra-block incra-block-lg">
+		<div class="review-content">
+			<h4 class="read-review-title">[_Customer Reviews]</h4>
+			<hr/>
+			[:ProductReviewListBlock]
+		</div>
+	</div>
+	<div id="write_review" class="clearfix incra-block">
+		<div class="form-content">
+			<h4 class="write-review-title">[_Write Your Own Review]</h4>
+			<hr/>
+			[?Customer.LoggedIn|LoggedIn=
+					[:ProductReviewForm]
+				|= 
+					[?Configuration.ReviewAllowGuests|Yes=
+						[:ProductReviewForm]
+					|=
+						<p class="review-nologged" id="review-form">
+						[_Only registered users can write reviews. Please,] <a href="[Website.GetUrl,Login,Login]"><strong>[_LOG IN]</strong></a> [_or] <a href="[Website.GetUrl,Customer,AccountCreate]"><strong>[_REGISTER]</strong></a>.
+						</p>
+					]
+			]
+		</div>
+	</div>
+</div>

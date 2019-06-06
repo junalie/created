@@ -1,0 +1,136 @@
+<div id="opc-payment-method" class="checkout-block payment-method" step="payment" onclick="openCheckoutStep(this);">
+	<div class="title">
+		<div class="circle-number">[General.Param1]</div>
+		<div class="step-header">
+			<a name="step_billingmethod"></a>
+			<h4>[_Payment Method]</h4>
+		</div>
+	</div>
+	<div class="col-md-12 content ">
+		<div class="payment-method-form">
+			<form action="" id="co-payment-form">
+				<input type="hidden" value="[Website.CurrentStoreView=[StoreView.Id]]" name="storeViewId">
+					<div class="col-md-12">
+						[?ShoppingCart.IsPaymentNeededNow|No= 
+							<p class="alert alert-warning">[Website.StaticBlockContentParsed, PaymentMethodPreOrderMessage]</p>
+						]
+						[?ShoppingCart.AreThereAnyAvailablePaymentMethods|Yes=
+							<ul class="list-unstyled payment-method-list">
+								[ShoppingCart.AvailablePaymentMethods=
+							
+									[?ShoppingCart.HasAvailableGateWays|No=
+										<li>
+											<input class="payment-method-item" name="method" type="radio" value="[PaymentMethod.Id]" id="p_method_[PaymentMethod.Code]" onclick="showExtrPaymentInfo('[PaymentMethod.Code]_[PaymentMethod.Id]')">
+											<label class="payment-method-item" for="p_method_[PaymentMethod.Code]">
+												[PaymentMethod.Name]
+												<span>[ShoppingCart.PaymentCostsForCertainMethod,[PaymentMethod.Id]]</span>
+											</label>
+											<div class="payment-additional-info hide" id="[PaymentMethod.Code]_[PaymentMethod.Id]-extra-info" style="padding-left: 40px;">
+												<div class="">	
+													<ul class="payment-processor-extra-fields list-unstyled checkout-extrafields">
+														[PaymentProcessor.ExtraFields=
+															[:ExtraField,payment_processor_[PaymentMethod.Id]]
+														]
+													</ul>
+													<ul class="payment-method-extra-fields list-unstyled checkout-extrafields">
+														[PaymentMethod.ExtraFields=
+															[:ExtraField,payment_method_[PaymentMethod.Id]]
+														]
+													</ul>
+												</div>
+											</div>
+										</li>
+									|Yes=
+										[ShoppingCart.AvailableGateways=
+											<li>
+													<input class="payment-method-item " name="method" type="radio" value="[PaymentMethod.Id]" id="p_method_sg[ShoppingCart.GatewayId]" class="radio in-block" onclick="selectGateway('[ShoppingCart.GatewayId]');showExtrPaymentInfo('[ShoppingCart.GatewayId]_[PaymentMethod.Id]')">
+													<input type="radio" name="gateway" value="[ShoppingCart.GatewayId]" id="gateway_[ShoppingCart.GatewayId]" style="display:none">
+													<label for="p_method_sg[ShoppingCart.GatewayId]">
+														[ShoppingCart.gateWayName] - [PaymentMethod.Name]
+													</label>
+
+													
+													<div class="payment-additional-info hide" id="[ShoppingCart.GatewayId]_[PaymentMethod.Id]-extra-info" style="padding-left: 40px;">
+														<div class="row">
+															<div class="col-md-8">
+																<ul class="list-unstyled">
+																	[ShoppingCart.ConfigurationFields,[ShoppingCart.GatewayId],[PaymentMethod.Id]=
+																		<li>
+																			<div class="form-group">
+																				<label for="">
+																	    			[ShoppingCartPaymentConfigurationValue.DisplayName] - [ShoppingCartPaymentConfigurationValue.FieldType]
+																	    		</label>
+																	    		[?ShoppingCartPaymentConfigurationValue.FieldType
+																					|Dropdown: 3151|Test bank=
+																						<select class="form-control" id="[PaymentMethod.Code]_[ShoppingCartPaymentConfigurationValue.FieldCode]" name="Configuration_[ShoppingCartPaymentConfigurationValue.FieldCode]"></select>
+																					       <script type="text/javascript">
+																					       		jQuery(document).ready(function(){
+																					       			var value = "";
+																						       		[ShoppingCartPaymentConfigurationValue.ComboValues=
+																						       			value = "[ShoppingCartPaymentConfigurationValue.ComboValue]".trim();
+																						       			jQuery("#[PaymentMethod.Code]_[ShoppingCartPaymentConfigurationValue.FieldCode]").append('<option value="'+value+'">[ShoppingCartPaymentConfigurationValue.ComboValue]</option>')
+																						       			
+																						       		]
+																						       		jQuery("#[PaymentMethod.Code]_[ShoppingCartPaymentConfigurationValue.FieldCode]").val("[ShoppingCartPaymentConfigurationValue.Value]");	
+																					       		})
+																					       </script>
+																				]
+																			</div>
+																		</li>
+																	]
+																</ul>															
+																<ul class="payment-processor-extra-fields list-unstyled checkout-extrafields">
+																	[PaymentProcessor.ExtraFields=
+																		[:ExtraField,payment_processor_[PaymentMethod.Id]]
+																	]
+																</ul>
+																<ul class="payment-method-extra-fields list-unstyled checkout-extrafields">
+																	[PaymentMethod.ExtraFields=
+																		[:ExtraField,payment_method_[PaymentMethod.Id]]
+																	]
+																</ul>
+															</div>
+														</div>
+													</div>
+													
+											</li>
+										]
+									]
+										
+								]
+							</ul>
+						|=
+							<p>***[ShoppingCart.AvailabilityPaymentMethodsDescription]</p>
+						]
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<hr/>
+						</div>
+					</div>
+				
+				<div class="buttons-set text-right">
+					[?Customer.LoggedIn|Guest=
+						<a class="step-back left" href="#" onclick="checkout.stepBack();return false;">
+							<img src="[File:/images/i_asc_arrow.gif]"/> [_Back]
+						</a>
+					]
+					<span class="please-wait pull-left" id="payment-please-wait" style="display:none;">
+						<img src="[File:/images/opc-ajax-loader.gif]" alt="Loading next step..." title="[_Loading next step...]" class=""> [_Loading next step...]        
+					</span>
+					<div class="required-fields"><em>* [_Required fields]</em></div>
+					<div class="incra-block">
+						<button class="btn btn-primary btn-checkout" onclick="payment.save();return false;">
+							[_Continue]
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+/*
+    JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+*/
+[:PaymentMethodBlockJS]
+

@@ -1,0 +1,24 @@
+/* Error: the order number is not known. If you had a genuine order, please contact the shop owner */
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Fail - No Order]]
+	[:head]
+	
+</head>
+<body>
+	<div class="page pagenotfound">
+		[:HeaderBlock]
+		<div class="once-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container] ">
+			[:Notification]
+			<div class="main-content " style="min-height: 200px;">
+				
+				<div class="alert alert-warning">
+				    <strong>[_Internal Error :]</strong> [_the payment has failed, and there was no order found. If this was a genuine attempt to pay, please contact the <a href="mailto:%1">store owner</a>.,[Configuration.StoreInfoMainEMail]]
+				</div> 
+			</div>
+		</div>
+		[:FooterBlock]
+	</div>
+</body>
+</html>

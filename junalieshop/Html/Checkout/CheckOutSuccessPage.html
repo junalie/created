@@ -1,0 +1,41 @@
+/*
+*	Renders CheckoutSuccessPage.
+*/
+/** -------------------------------------------------------------------
+Name:              CheckOutSuccessPage
+Location:          /Html/Checkout/CheckOutSuccessPage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 17:06 (relocation)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+--------------------------------------------------------------------**/
+/*show thank you, order number, that we will e-mail confirmation with an hour, link to go back shopping*/
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Success]]
+	[:head]
+</head>
+<body>
+	[:HeaderBlock]
+	<div class="one-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container]">
+		[:Notification]
+		<div class="main-content ">
+			<div class="col-md-12 main-content " style="min-height: 400px;">
+				<div class="row">
+					[Website.StaticBlockContentParsed,CheckoutSuccess]
+					
+					<div class="button-set">
+						<button type="button" class="form-button" onclick="window.location='[Website.GetUrl,Home,]'"><span>[_Continue Shopping]</span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	[:FooterBlock]
+</body>
+</html>
+
+
+

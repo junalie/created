@@ -1,0 +1,9 @@
+<div class="form-group">
+	<label>[Attribute.Title]</label>
+	<select [?Attribute.ValueRequired|Yes=required] name="[Attribute.AttributeCode]" id="attribute[Attribute.Id][Product.Id]"  onchange="setAttributeValue('[Attribute.AttributeCode]',this.value)" class="product-attrib form-control" >
+		<option value="">[_Please select]</option>
+		[Product.ConfigurableChildProducts,[Attribute.AdminTitle]=
+			<option value="[AttributeOption.Id]" admin="[AttributeOption.Admin]" [?UserInput.ConfigurableAttributeValueValid,[Attribute.AdminTitle],[AttributeOption.Admin]|yes=selected]>[AttributeOption.DisplayValue]</option>
+	 	]
+	</select>
+</div>

@@ -1,0 +1,31 @@
+[_Availability : ] 
+<!-- 
+Stock Status : InStock, OutOfStock, BackOrder or PreOrder.
+-->
+
+[?Product.StockStatus|InStock=
+	<i class="fa fa-circle" aria-hidden="true" style="color:#81bd25"></i>
+	<strong class="stock-status"> [_In Stock]</strong>
+	[?Product.DisplayEstimatedDeliveryTime|Yes=
+		[?General.IsEmpty,Product.DeliveryTimeWhenInStockSmart|No=<p>[Product.DeliveryTimeWhenInStockSmart]</p>]
+	]
+|OutOfStock=
+	<i class="fa fa-circle" aria-hidden="true" style="color:#ff6200"></i>
+	<strong class="stock-status"> [_Out of Stock]</strong>
+	[?Product.DisplayEstimatedDeliveryTime|Yes=
+		[?General.IsEmpty,Product.DeliveryTimeWhenNotInStockSmart|No=<p>[Product.DeliveryTimeWhenNotInStockSmart]</p>]
+	]
+|PreOrder=
+	<i class="fa fa-circle" aria-hidden="true" style="color:#ff6200"></i>
+	<strong class="stock-status"> [_Pre Order]</strong>
+	[?Product.DisplayEstimatedDeliveryTime|Yes=
+		[?General.IsEmpty,Product.DeliveryTimeWhenPreOrderSmart|No=<p>[Product.DeliveryTimeWhenPreOrderSmart]</p>]
+	]
+|BackOrder=
+	<i class="fa fa-circle" aria-hidden="true" style="color:#ff6200"></i>
+	<strong class="stock-status"> [_Back Order]</strong>
+	[?Product.DisplayEstimatedDeliveryTime|Yes=
+		[?General.IsEmpty,Product.DeliveryTimeWhenNotInStockSmart|No=<p>[Product.DeliveryTimeWhenNotInStockSmart]</p>]
+	]
+]
+<p>[:ProductReserveButton]</p>

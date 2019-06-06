@@ -1,0 +1,101 @@
+/*
+*		Renders the cms page. This page may render the cms as a content of this page or the content as a whole page.
+*       url : /<urlkey> or /cmspage/id/<id>
+*/
+[?CmsPage.FullPage|Yes=
+        [CmsPage.Content] 
+    |No=
+        <!DOCTYPE html >
+        <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <title>[Website.Name] [:PipeSlash] [CmsPage.PageTitleFull]</title>
+                <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+                <meta name="description" content="[CmsPage.MetaDescriptionFull]">
+                <meta name="keywords" content="[CmsPage.MetaKeywordsFull]">
+                <style type="text/css">
+                    .parallax { 
+                      /* The image used */
+                      background-image: url("http://gonthemes.info/cosmeli/wp-content/uploads/2018/11/slider-1.jpg");
+                      /* Set a specific height */
+                      height: 250px; 
+                      /* Create the parallax scrolling effect */
+                      background-attachment: fixed;
+                      background-position: center;
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                    }
+                    .navbar-default .dropdown:hover .dropdown-menu{
+                            display: block;
+                            visibility: visible;
+                            margin-top: -5px;
+                        }
+                </style>
+                [:head]
+            </head>
+            <body class="[Url.Model][Url.View]">
+                <!-- [:[DesignLayout.Layout]] -->
+
+                <div class="container-fluid row">
+                   <nav class="container-fluid"  style="background-color: #f2c9d5; padding-left: 87px; padding-right: 108px;">
+                        <div class="row" >
+                            <div class="col-md-6" style="padding-top: 20px;">   
+                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                 Email: support@demo.com
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"> </span>  
+                                 Hotline: +012 345 6789
+                            </div>
+                            <div class="col-md-6 text-right" style="padding-top: 20px;">    
+                                <button type="button" style="background-color: #f15282;"> <a href="[Website.GetUrl,Customer,Account]" style=" color:  black;">My Account</a></button>
+                                <a href="#"><img src="[File:/images/facebook.png]" width="15px" style="padding-right: 10px;"></a>   
+                                <a href="#"><img src="[File:/images/twitter.png]" width="20px" style="padding-right: 10px;"></a>    
+                                <a href="#"><img src="[File:/images/instagram.png]" width="20px" style="padding-right: 10px;"></a>  
+                                <a href="#"><img src="[File:/images/pinterest.png]" width="20px" style="padding-right: 10px;"></a>  
+                                <a href="#"><img src="[File:/images/rss.png]" width="10px" ></a>        
+                            </div>
+                        </div>
+                    </nav>  
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color: white;">
+                        <ul class="nav navbar-nav">
+                            <li class="active button" style="padding-left: 23px; padding-right: 134px;">
+                                <a href="[Website.GetUrl,Home]">
+                                    <img width="180px"  src="[Website.GetUrl,,]/[Configuration.DesignLogo]" >
+                                </a>
+                            </li>
+                            [Website.TopMenuSorted=
+                                <li class="[?MenuOption.HasChildren|Yes=dropdown|No=]" >
+                                    [?MenuOption.HasChildren|Yes=
+                                        <a href="[MenuOption.FullUrl]" class="dropdown-toggle dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-left: 50px;  font-weight: bold; color: black; padding-top: 27px;" >
+                                            [MenuOption.Name] 
+                                        </a> 
+                                        <ul class="dropdown-menu">
+                                            [MenuOption.TopMenuChildrenSorted=
+                                                <li>
+                                                    <a href="[MenuOption.FullUrl] " class="dropdown" style="  font-weight: bold; color: black; padding-top: 27px;">[MenuOption.Name]</a>
+                                                </li>
+                                                [MenuOption.TopMenuChildrenSorted=
+                                                    <li>
+                                                        <a href="[MenuOption.FullUrl] " class="dropdown" style="  font-weight: bold; color: black; padding-top: 27px;">[MenuOption.Name]</a>
+                                                    </li>
+                                                ]
+                                            ]
+                                        </ul>
+                                    |No=
+                                        <a href="[MenuOption.FullUrl] " style="padding-left: 50px; font-weight: bold; color: black; padding-top: 27px;">[MenuOption.Name]
+                                        </a>
+                                    ]
+                                </li>
+                            ]
+                        </ul>
+                    </div>
+                    
+                        
+                </div>
+                <div class="row">
+                    [:Junalie.Layout.CmsPage]    
+                </div>
+                <div class="row">                    
+                    [:FooterBlock]
+                </div>
+            </body>
+        </html>
+]

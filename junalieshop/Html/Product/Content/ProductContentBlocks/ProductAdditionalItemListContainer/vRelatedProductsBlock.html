@@ -1,0 +1,14 @@
+[?Product.HasRelatedProducts|yes=
+	<div class="row">
+		<h3>[_Related Products]</h3>
+	</div>
+	<div class="row">
+		<div class="product-info-block-content">
+			[Product.RelatedProducts,3= 
+				[?Product.Active|Yes=
+					[:vProductListItem]
+				]
+			]
+		</div>
+	</div>
+]

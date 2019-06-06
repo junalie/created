@@ -1,0 +1,42 @@
+[?CheckOutExtraDataField.Type
+	|CheckBox=
+		<li>
+			<div class="form-group row">
+				<div class="col-md-8">
+					<input class="[?CheckOutExtraDataField.Compulsary|Yes=required]" type="checkbox" id="[General.Param1]_extra[CheckOutExtraDataField.Id]" name="ExtraField\\[[CheckOutExtraDataField.Id]\\]" [?CheckOutExtraDataField.ReadOnly|Yes=disabled] value="1">
+					<label for="[General.Param1]_extra[CheckOutExtraDataField.Id]">[CheckOutExtraDataField.Caption] [?CheckOutExtraDataField.Compulsary|Yes=<em>*</em>]</label>
+				</div>
+			</div>
+		</li>
+	|DropDown=
+		<li>
+			<div class="form-group row">
+				<div class="col-md-8">
+					<label for="[General.Param1]_extra[CheckOutExtraDataField.Id]">[CheckOutExtraDataField.Caption]  [?CheckOutExtraDataField.Compulsary|Yes=<em>*</em>]</label>
+					<select id="[General.Param1]_extra[CheckOutExtraDataField.Id]" [?CheckOutExtraDataField.ReadOnly|Yes=disabled] class="form-control [?CheckOutExtraDataField.Compulsary|Yes=required]" name="ExtraField\\[[CheckOutExtraDataField.Id]\\]">
+						[CheckOutExtraDataField.Choices=
+							<option value="[CheckOutExtraDataFieldChoice.Id]" [?CheckOutExtraDataFieldChoice.IsDefault|Yes=selected]>[CheckOutExtraDataFieldChoice.Label]</option>
+						]
+					</select>
+				</div>
+			</div>
+		</li>
+	|Date=
+		<li >
+			<div class="form-group row">
+				<div class="col-md-8">
+					<label for="[General.Param1]_extra[CheckOutExtraDataField.Id]">[CheckOutExtraDataField.Caption]  [?CheckOutExtraDataField.Compulsary|Yes=<em>*</em>]</label>
+					<input [?CheckOutExtraDataField.ReadOnly|Yes=disabled] class="datepicker input-text [?CheckOutExtraDataField.Compulsary|Yes=required]" id="[General.Param1]_extra[CheckOutExtraDataField.Id]" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="ExtraField\\[[CheckOutExtraDataField.Id]\\]" value="[CheckOutExtraDataField.DefaultValue]"/>
+				</div>
+			</div>
+		</li>
+	|=
+		<li>
+			<div class="form-group row">
+				<div class="col-md-8">
+					<label for="[General.Param1]_extra[CheckOutExtraDataField.Id]">[CheckOutExtraDataField.Caption]  [?CheckOutExtraDataField.Compulsary|Yes=<em>*</em>]</label>
+					<input [?CheckOutExtraDataField.ReadOnly|Yes=disabled] class="form-control [?CheckOutExtraDataField.Compulsary|Yes=required]" id="[General.Param1]_extra[CheckOutExtraDataField.Id]" type="text" name="ExtraField\\[[CheckOutExtraDataField.Id]\\]" value="[CheckOutExtraDataField.DefaultValue]"/>
+				</div>
+			</div>
+		</li>
+]

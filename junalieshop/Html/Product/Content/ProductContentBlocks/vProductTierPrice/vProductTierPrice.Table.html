@@ -1,0 +1,47 @@
+[?Product.ProductType|Simple=
+    [?Product.TierPricesExist|Yes=
+        <div class="tier-price-block">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>Qty</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    [Product.TierPrices=
+                        <tr>
+                            <td>[TierPrice.Number]</td><td>[TierPrice.ActualPriceEach]</td>
+                        </tr>
+                    ]
+                </tbody>
+            </table>
+            /*
+            <ul class="tierprice">
+
+                <li>[_Buy <strong>%1</strong>, for <strong>%2</strong> each and save %3%, ,,[TierPrice.ActualSavePercent]] </li>]
+            </ul>
+            */
+        </div>
+    ]
+    |Configurable=
+        [?SimpleProduct.TierPricesExist|Yes=
+        <div class="tier-price-block">
+            <ul class="tierprice">
+                <table class="table table table-bordered table-striped">
+                    <tbody>
+                    [SimpleProduct.TierPrices=
+                    <tr>
+                        <td>[TierPrice.Number]</td><td>[TierPrice.ActualPriceEach]</td>
+                    </tr>
+                    ]
+                    </tbody>
+                </table>
+
+                /*
+                <li>[_Buy <strong>%1</strong>, for <strong>%2</strong> each and save %3%, [TierPrice.Number],[TierPrice.ActualPriceEach], [TierPrice.ActualSavePercent]] </li>]
+                */
+            </ul>
+        </div>
+        ]
+]

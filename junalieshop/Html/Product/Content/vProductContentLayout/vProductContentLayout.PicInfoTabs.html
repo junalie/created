@@ -1,0 +1,215 @@
+<div class="product-content-layout pic-info-tabs">
+	<form id="product_addtocart_form" class="">
+		<div class="col-md-5 product-media-image">
+			[?Product.Sale
+				|Sale=
+					<div class="sale-badge">
+						<div class="sale-ribbon">
+							<h4>[_SALE]</h4>
+						</div>
+					</div>
+			]
+			[:vProductMediaImage]
+		</div>
+		<div class="col-md-7">
+			<div class="product-title clearfix">
+				<h2>[Product.Name]</h2>
+				<hr style="margin-bottom:5px;"/>
+			</div>
+			<div class="product-details row">
+				<div class="col-md-12">
+					<p>[Product.Description]</p>
+				</div>
+			</div>
+			<div class="clearfix price-block incra-block">
+				<div class="clearfix">
+					[:ProductPriceBlock?Product.Sale]   <!--should this be PriceBlock? -->
+				</div>
+			</div>
+			<div class="row">
+				[:ProductAvailabilityBlock]
+			</div>
+			[?Product.ProductType|Configurable=
+				<div class="product-attributes row incra-block">
+					<div class="col-md-12 incra-block">
+						[:ProductAttributesBlock]
+					</div>
+				</div>
+			]
+			[?Product.HasOptions
+				|Yes=
+					<div class="product-options row incra-block">
+						<div class="col-md-12">
+							[:ProductOptionsBlock]
+						</div>
+					</div>
+			]
+			<div class="row">
+				<div class="col-md-4">
+					[:vProductQuantityBlock] 
+				</div>
+				
+				<div class="col-md-12">
+					<hr style="margin-top: 10px;margin-bottom: 10px;"/>
+					[?Product.HasBrand|Yes=
+						<div class="product-brand-block">
+							[Product.Brand=
+								<a href="[Brand.WwwLink]" target="_blank">
+									[?Brand.LogoSmallEmpty|No=
+										<img src="/[Brand.Logo]" alt="[Brand.Name]" width="100">
+									]
+								</a>
+							]
+						</div>
+					]
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-6 incra-block incra-block-md text-left">
+						<button  data-toggle="tooltip" data-placement="top" title="Add to Wishlist" class="btn btn-link" onclick="javascript:IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddToWishlist]',IncraWindow.formatUrl('[Website.GetUrl,Product,[Product.Id]]'),'true/[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'POST'); ">
+							<span class="glyphicon glyphicon-heart"></span> Wishlist
+						</button> 
+						<button  data-toggle="tooltip" data-placement="top" title="Add to Compare" class="btn btn-link" onclick="javascript:IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddToCompare]',IncraWindow.formatUrl('[Website.GetUrl,Product,[Product.Id]]'),'true/[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'POST');">
+							<span class="glyphicon glyphicon-th-large"></span> Compare
+						</button>
+					</div>
+					<div class="col-md-6 incra-block incra-block-md text-right">
+						<button class="btn btn-primary btn-lg">[_Add to Cart]</button>
+							<input type="hidden" value="[SimpleProduct.Id]" id="simple_product_id"/>
+							<input type="hidden" value="[Website.GetUrl,Product,[SimpleProduct.Id]]" id="second_url"/>
+							/*
+								JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+							*/
+							[:vProductContentLayoutJS]
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="additional-info-container col-md-12 clearfix incra-block" style="margin-bottom:20px;margin-top:20px;background:#f0f0f0;min-height: 300px;">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active">
+				<a href="#infoattributes" aria-controls="infoattributes" role="tab" data-toggle="tab">
+					[_Extra Info]
+				</a>
+			</li>
+			<li role="presentation" class="">
+				<a href="#product_ratings" aria-controls="product_ratings" role="tab" data-toggle="tab">
+					[_Product ratings]
+				</a>
+			</li>
+			<li role="presentation" class="">
+				<a href="#product_tags" aria-controls="product_tags" role="tab" data-toggle="tab">
+					[_Product tags]
+				</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="infoattributes">
+				<!-- Additonal info -->
+				[?Product.HasInfoAttributes|Yes=
+					<div class="incra-block col-md-12">
+						<div class="additional-info product-info-block">
+							<div class="row">
+								<div class="col-md-12 block-title">
+									
+								</div>
+							</div>
+							<div class="product-info-block-content">
+								<table class="table table-bordered">
+									<colgroup>
+										<col width="40">
+										<col width="200">
+									</colgroup>
+									<tbody>
+										[Product.IterateAttributesForProductPage= 
+											<tr>
+												<th><strong>[Attribute.Title]</strong></th><td>[ProductAttribute.Value]</td>
+											</tr>
+										]
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				]
+			</div>
+			<div role="tabpanel" class="tab-pane " id="product_ratings">
+				<div class="product-info-block-content">
+					<div class="incra-block col-md-12">
+						[:vProductRating]
+					</div>
+					<div class="col-md-12">
+						[:ProductReviewsBlock]
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane " id="product_tags">
+				<div class="product-info-block-content">
+					[?Product.HasTags
+						|Yes=
+							<h5>[_Other people marked this product with these tags:]</h5>
+							<ul class="list-unstyled list-inline tags">[Product.TagsSortedAndUnique= <li> <a href="[Website.GetUrl,Tag,[Tag.Name]]">[Tag.Name]  </a> ([Tag.ProductCountWithTagName]) </li>]</ul>
+					]
+					<div class="incra-block col-md-12">
+						<form id="addTagForm" action="" method="get" class="form">
+							<div class="form-group">
+								<label for="productTagName">[_Add Your Tags]</label>
+								<input type="text" class="form-control required" name="tagname" id="productTagName" style="width:500px;"/>
+							</div>
+							<button type="submit" title="[_Add Tags]" class="btn btn-default">
+								<span>
+									<span>[_Add Tags]</span>
+								</span>
+							</button>
+						</form>
+						<br/>
+						<p class="note">[_Use spaces to separate tags. Use single quotes (') for phrases.]</p>
+					</div>
+					<script type="text/javascript">
+						jQuery("#addTagForm").validate({
+							submitHandler: function(form) {
+								IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddTag]',IncraWindow.formatUrl('[Url.FullUrl]'),'true',jQuery('#addTagForm').serialize()+ '&product_id=[Product.Id]','POST');
+							 }
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Upsell Products -->
+	/*
+	[?Product.HasUpSellProducts|yes=
+		<div class="col-md-12">
+			<div class="row">
+				<h3>[_You might also be interested in the following products]</h3>
+			</div>
+			<div class="row">
+				<div class="product-info-block-content">
+					[Product.UpSells,4= 
+						[:ProductListBlockGridItem,4,SmallButtons]
+					]
+				</div>
+			</div>
+		</div>
+		
+	]
+	
+	[?Product.HasRelatedProducts|yes=
+		<!-- Related Products -->
+		<div class="col-md-12">
+			<div class="row">
+				<h3>[_Related Products]</h3>
+			</div>
+			<div class="row">
+				<div class="product-info-block-content">
+					[Product.RelatedProducts,3= 
+						[:ProductListBlockGridItem,4,SmallButtons]
+					]
+				</div>
+			</div>
+		</div>
+	]
+	*/
+</div>

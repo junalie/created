@@ -1,0 +1,117 @@
+<div class="blog-comment-form clearfix">
+	<div class="col-md-12">
+		<h6 class="clearfix">
+			<strong class="pull-left blogitem-like-count[BlogItem.Id]" style="padding-top: 10px;">Likes [BlogComment.Likes]</strong>
+
+			<!-- to be remove on final -->
+			<div class="text-right pull-right">
+				<a onclick="incra_blog.likePost([BlogItem.Id]);return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+					Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+				</a>
+			</div>
+			[?Customer.LoggedIn|Yes=
+				[?Blog.CustomersCanLike|No=
+					<div class="text-right pull-right">
+						<a onclick="incra_blog.likePost([BlogItem.Id]);return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+							Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+						</a>
+					</div>
+				]
+				|No=
+					[?Blog.GuestsCanLike|No=
+						<div class="text-right pull-right">
+							<a onclick="incra_blog.likePost([BlogItem.Id]);return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+								Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+							</a>
+						</div>
+					]
+			]
+		</h6>
+		
+		<div class="clearfix">
+			<hr style="margin-top: 0px;margin-bottom: 8px;" />
+		</div>
+	</div>
+
+	<div class="blog_item_container[BlogItem.Id] clearfix">
+		[BlogItem.Comments=
+			<div class="col-md-12 reply-item">
+				<div class="user-avatar reply-user-avatar" style="">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUoZSRKktulJpbH9xEvIg9wwa_mIOyvQa1neXCplwF_bEGE31v" width="35" />
+				</div>
+				<div class="reply-content">
+					<strong>[BlogComment.UserName]</strong> [BlogComment.Comment]
+				</div>
+				<div class="comment-likes clearfix">
+					<h6 class="clearfix">
+						<span class="" style="padding-top: 5px;display: inline-block;">Likes [BlogComment.Likes]</span>
+
+						<!-- to be remove on final -->
+						<div class="" style="display: inline-block;">
+							<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+								Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+							</a>
+						</div>
+						[?Customer.LoggedIn|Yes=
+							[?Blog.CustomersCanLike|No=
+								<div class="" style="display: inline-block;">
+									<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+										Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+									</a>
+								</div>
+							]
+							|No=
+								[?Blog.GuestsCanLike|Yes=
+									<div class="" style="display: inline-block;">
+									<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+										Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+									</a>
+								</div>
+								]	
+						]
+					</h6>
+				</div>
+			</div>
+		]
+		/*
+		<div class="col-md-12 reply-item">
+			<div class="user-avatar reply-user-avatar" style="width: 35px;height: 35px;">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUoZSRKktulJpbH9xEvIg9wwa_mIOyvQa1neXCplwF_bEGE31v" width="35" />
+			</div>
+			<div class="reply-content">
+				<strong>Rebel empire</strong> The Jedi must be stop!
+			</div>
+		</div>
+		<div class="col-md-12 reply-item">
+			<div class="user-avatar reply-user-avatar" style="width: 35px;height: 35px;">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUoZSRKktulJpbH9xEvIg9wwa_mIOyvQa1neXCplwF_bEGE31v" width="35" />
+			</div>
+			<div class="reply-content">
+				<strong>Rebel empire</strong> The Jedi must be stop!
+			</div>
+			<div class="comment-likes clearfix" style="padding-left: 45px;">
+					<h6 class="clearfix">
+						<span class="" style="padding-top: 5px;display: inline-block;">Likes 10,000</span>
+						
+						<div class="" style="display: inline-block;">
+							<a href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+								Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+							</a>
+						</div>
+						
+					</h6>
+				</div>
+		</div>
+		*/
+	</div>
+	[:BlogReplyCommentForm]
+	[?Customer.isLoggedIn|Yes=
+		[?Blog.CustomersCanComment|Yes=
+			[:BlogReplyCommentForm]
+		]
+		|No=
+		[?Blog.GuestsCanComment|Yes=
+			[:BlogReplyCommentForm]
+		]
+	]
+</div>

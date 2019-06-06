@@ -1,0 +1,139 @@
+<div id="shipping_storelocations_content_[ShippingMethod.Code]" class="shipping-storelocations-content">
+[?ShippingMethod.ShowStoreLocations|Yes=
+	[?Website.MultipleStoreLocationsAvailable|Yes=
+		<div>
+			<label>[_Choose Store :]</label>
+			<ul class="list-unstyled">
+				[Website.StoreLocations=
+					<li>
+						<input id="store_location_[StoreLocation.Id]" type="radio" class="storelocation_value" name="StoreLocationId\\\\[[General.Param1]\\\\]" value="[StoreLocation.Id]" [?StoreLocation.Isdefault|Yes=checked]> <label for="store_location_[StoreLocation.Id]">[StoreLocation.AddressSummary]</label> &nbsp;
+						<!-- <a class="view-store-location" style="cursor:pointer;" onclick="jQuery('#store_location_details_[StoreLocation.Id]').toggle(); showStoreMap('[StoreLocation.Addresssummary]','[StoreLocation.Latitude]','[StoreLocation.Longitude]','gmap_canvas[StoreLocation.Id]');"> -->
+						<a class="view-store-location" style="cursor:pointer;" data-toggle="modal" data-target="#store-details-[StoreLocation.Id]">
+							[_View Store Details] <span class="glyphicon glyphicon-new-window"></span>
+						</a>
+						<!-- Modal -->
+						<div class="modal fade" id="store-details-[StoreLocation.Id]" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h3 class="modal-title" id="myModalLabel">[StoreLocation.Name] [?StoreLocation.IsMainBranch|Yes=[_- Main Branch]]</h3>
+										<hr style="margin:0px;"/>
+										<p>
+											[?StoreLocation.DescriptionAvailable|Yes=[StoreLocation.Description]]
+										</p>
+									</div>
+									<div class="modal-body clearfix col-md-12">
+										<div class="col-md-4">
+											<p>
+												[?StoreLocation.AdditionalInformationAvailable|Yes=
+													[StoreLocation.AdditionalInformation]
+												]
+											</p>
+												<div class="col-md-12">
+													<dt class="row">[_Address : ]</dt>
+												</div>
+												<div class="col-md-12">[StoreLocation.AddressSummary]</div>
+												<dt class="clearfix">[_Contact :]</dt>
+												<dd class="col-md-12">[StoreLocation.TelNumber]</dd>
+												<dd class="col-md-12">[StoreLocation.EMail]</dd>
+											
+											[?StoreLocation.OpeningTimesAvailable|Yes=
+												<div class="col-md-12">
+													<dt class="row">[_Store Hours : ]</dt>
+												</div>
+												<dd class="col-md-12">
+													[StoreLocation.OpeningTimes]
+												</dd>
+											]
+										
+											[?StoreLocation.RouteDescriptionAvailable|Yes=
+												<div class="col-md-12">
+													<dt class="row">[_Route Description :]</dt>
+												</div>
+												<dd class="col-md-12">
+													[StoreLocation.RouteDescription]
+												</dd>
+											]
+										</div>
+										<div class="col-md-8">	
+											[?StoreLocation.CoordinatesAvailable|Yes=
+												<div class="store-location-google-map">	
+													<div style="overflow:hidden;">
+														<div id='gmap_canvas[StoreLocation.Id]' class="gmap-canvas" style='height:500px;width:100%;'></div>
+													</div>
+													<script type="text/javascript">
+														jQuery('#store-details-[StoreLocation.Id]').on('shown.bs.modal', function (e) {
+														  // do something...
+														  showStoreMap('[StoreLocation.Addresssummary]','[StoreLocation.Latitude]','[StoreLocation.Longitude]','gmap_canvas[StoreLocation.Id]');
+														})
+														
+													</script>
+												</div>
+											]
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				]
+			</ul>
+		</div>
+		
+		[Website.StoreLocations=
+		<div id="store_location_details_[StoreLocation.Id]" class="store-location-pop-up" style="display:none">
+			<div class="store-location-overlay"></div>
+			<div class="store-location-content">
+				<div class="close-store-location a-right"><span  class="close-store-location" onclick="jQuery('#store_location_details_[StoreLocation.Id]').hide();">Close</span>
+				</div>
+				<div class="store-location-details small-6 columns">
+					<div>
+						<div class="a-center"><h4>[StoreLocation.Name] [?StoreLocation.IsMainBranch|Yes=[_- Main Branch]]</h4></div>
+						<div class="a-center">[?StoreLocation.DescriptionAvailable|Yes=[StoreLocation.Description]]<br>
+							[?StoreLocation.AdditionalInformationAvailable|Yes=
+								[StoreLocation.AdditionalInformation]
+							]
+							<hr>
+						</div>
+						<div class="row">
+							<div class="small-6 columns">
+								<div><strong>[_Address : ]</strong> <br></div>
+								<div>[StoreLocation.AddressSummary]</div>	
+							</div>
+							<div class="small-6 columns">
+								<div><strong>[_Contact :]</strong><br></div>
+								<div>[StoreLocation.TelNumber]</div>		
+								<div>[StoreLocation.EMail]</div>
+							</div>
+						</div>
+						[?StoreLocation.OpeningTimesAvailable|Yes=	
+						<div><strong>[_Store Hours :]</strong></div><div>[StoreLocation.OpeningTimes] <br><br></div>	
+						]
+						
+						[?StoreLocation.RouteDescriptionAvailable|Yes=	
+						<div><strong>[_Route Description :]</strong></div><div>[StoreLocation.RouteDescription]</div>	
+						]
+					</div>
+				</div>
+				<div class="store-location-google-map small-6 columns">	
+					[?StoreLocation.CoordinatesAvailable|Yes=
+					<div style="overflow:hidden;">
+						<div id='gmap_canvas[StoreLocation.Id]' class="gmap-canvas" style='height:500px;width:100%;'></div>
+					</div>
+					]
+				</div>
+			</div>
+		</div>
+		]
+	|=
+		<div><input id="store_location_[StoreLocation.Id]" type="hidden" class="storelocation_value" name="StoreLocationId" value="[StoreLocation.Id]">
+		[Website.DefaultStoreLocations=[StoreLocation.AddressSummary]]
+		</div>
+	]
+]
+</div>
+

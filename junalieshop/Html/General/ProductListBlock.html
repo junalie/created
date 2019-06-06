@@ -1,0 +1,27 @@
+/*
+*	Displays the list of products as a result of the product filter which is called from pages like : Category, Brand, Best Rated, Special Products, etc.
+*
+*/
+[?Filter.Empty|no=
+	[:vToolbar]
+]
+<div class="row ">
+	<div class="row product-list list-group">
+	   [?UserInput.CatalogMode|List=
+	      [Filter.Products=
+	       [:vProductListItem]
+	      ]
+	   |Grid=
+	  
+	      [Filter.Products=
+	       [:vProductListItem]
+	      ]
+	   ]
+		
+	</div>
+</div>
+[?Filter.Empty|no=
+	[?Design.DesignSelectionName,vToolbar|Compact=[:ToolbarCompactPagination]|=[:vToolbar]]
+	|yes=<p class='no-results'>[_There are no products matching the selection.]</p>
+]
+

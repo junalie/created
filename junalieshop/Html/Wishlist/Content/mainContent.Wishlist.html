@@ -1,0 +1,140 @@
+<div class="my-account incra-block">
+    <div class="wishlist-container incra-block">
+        <div class="page-title">
+            <h2>[_My Wishlist]</h2>
+        </div>
+        [?WishList.Empty|WishListFilled=
+        <div class="my-wishlist">
+            <form id="form-wishlist" method="post">
+                <table class="table ">
+                    <colgroup>
+                        <col width="10"/>
+                        <col width="50"/>
+                        <col width="400"/>
+                        <col width="150"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>[_Product Image]</th>
+                            <th>[_Product Details and Comment]</th>
+                            <th>[_Add to Cart]</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        [WishList.Items=
+                            <tr>
+                                <td>
+                                    <div class="text-left" style="padding-top: 15px;">
+                                        <a href="#" onclick="IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,RemoveFromWishList]',IncraWindow.formatUrl('[Url.FullUrl]'),'true/[WishListItem.Id]');">
+                                            <span class="glyphicon glyphicon-trash"> </span>
+                                        </a>
+                                        <!-- <img  class="img-remove" alt="[_Remove Item]" src="[File:/images/closev1.png]"/> -->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="image-holder">
+                                        <a class="product-image" href="[Website.GetUrl,Product,[Product.Id]]">
+                                            [?Product.ThumbnailImageEmpty|Yes=
+                                                <img src="[File:/images/no_image.png]" />
+                                                |No=
+                                                <img src="/[Product.ThumbnailImageUrl]" alt="[Product.Name]"  />
+                                            ]
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="[Website.GetUrl,Product,[Product.Id]]" class="product-name">
+                                        <h5>[Product.Name]</h5>
+                                    </a>
+                                    <ul>
+                                        [WishListItem.Attributes=<li>[WishListItemAttribute.Value]</li>]
+                                    </ul>
+                                    <dl>[WishListItem.Options=
+                                        <dt>[ProductOption.Label]</dt> 
+                                        <dd>[WishListOption.ValueAsText]</dd>
+                                        ]
+                                    </dl>
+                                    <textarea class="form-control" title="[_Comment]" style="height: 90px;" cols="30" rows="8" name="description\\\[[WishListItem.Id]\\\]" placeholder="[_Please enter your comments...]">[WishListItem.Description]</textarea>
+                                </td>
+                                <td>
+                                    
+                                    <p>[:ProductPriceBlock?Product.Sale]</p>
+                                    /*** for product time based ***/
+                                    [?WishlistItem.ProductTimeId|0=
+                                    |=
+                                        <div class="alert alert-success">[ProductTime.DateTime]</div>
+                                    ]
+
+                                    [?WebsiteFeatures.Checkout|Yes=
+                                        <div class="form-group">
+                                            <input type="text" name="qty\\\\[[WishListItem.Id]\\\\]" value="[WishListItem.Quantity]" size="2" class="form-control qty" id="qty[WishListItem.Id]">
+                                        </div>
+                                        [?Product.ProductType|Configurable=
+                                                <button  class="btn btn-primary" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+                                                    <!-- <span><span>[_Configure]</span></span> -->
+                                                    <div class="hvr-shutter-in-horizontal update" style="width:100px;">
+                                                       [_Configure]
+                                                    </div>
+                                                </button>
+                                            |=
+                                            [?Product.HasRequiredOptions|Yes=
+                                                <button  style="border: none;background: transparent;padding: 0px;" class="btn btn-primary" onclick="window.location.href='[Website.GetUrl,Product,[Product.Id]]'" class="button btn-cart" title="[_Configure]" type="button">
+                                                    <!-- <span><span>[_Configure]</span></span> -->
+                                                    <div class="hvr-shutter-in-horizontal update" style="width:100px;">
+                                                       [_Configure]
+                                                    </div>
+                                                </button>
+                                            |=
+                                                <button type="button" class="btn btn-primary btn-sm" title="[_add to cart]"  onclick="IncraShoppingCart.ajaxAddToCart({submit_url : '[Website.GetUrl,IncraShop,AddFromWishlistToCart]',second_url : '[Url.FullUrl]',flag:true,id :'[WishListItem.Id]',post_data:'qty='+jQuery('#qty[WishListItem.Id]').val()}); return false;">
+                                                    <span><span>[_Add to Cart]</span></span>                                                    
+                                                </button>
+                                            ]
+                                        ]
+                                    ]
+                                    &nbsp;
+                                        <a href="[Website.GetUrl,Product,[WishListItem.ProductId]]" class="edit">
+                                            <span class="glyphicon glyphicon-pencil"></span> [_Edit]
+                                        </a>
+                                    
+                                </td>
+                                
+                            </tr>
+                        ]
+                    </tbody>
+                </table>
+                <hr/>
+                <div class="clearfix incra-block">
+                    <div class="col-md-6 buttons-sett">
+                        <button type="button" class="btn btn-warning btn-small" onclick="IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,ClearWishList]',IncraWindow.formatUrl('[Url.FullUrl]'),'true');">
+                            <span><span>[_Clear Wishlist]</span></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span><span>[_SHARE THIS WISHLIST]</span></span>
+                        </button>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <div class="row">
+                            <button type="submit" class="btn btn-default">
+                                <span><span>[_UPDATE WISHLIST]</span></span>
+                            </button> &nbsp;
+                            [?WebsiteFeatures.Checkout|Yes=
+                                <button type="button" class="btn btn-primary" onclick="IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddAllToCart]',IncraWindow.formatUrl('[Url.FullUrl]'),'true');">
+                                       [_ADD ALL TO CART]
+                                </button>
+                            ]
+                        </div>
+                    </div>
+                </div>
+            </form>
+              /*
+            JS code contains functionality applied on this block.  Please dont remove this code when overriding designs.
+            */
+            [:mainContentWishlistJS]
+        </div>
+      
+        
+        |WishListEmpty=[_Your wishlist is empty.]]
+    </div>
+</div>

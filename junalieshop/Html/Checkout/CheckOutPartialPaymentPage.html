@@ -1,0 +1,40 @@
+/*  called when partial payment was done */
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Partial Payment]]
+	[:head]
+	
+</head>
+<body>
+<div class="page">
+	[:headerblock]
+	<div class="once-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container] ">
+		[:Notification]
+		<div class="main-content " style="min-height: 400px;">
+			<strong>[OrderMutation.PaymentMethod]</strong>
+			<p>[OrderMutation.PaymentDetails]</p>
+			<dl class="extra-fields">
+			[OrderMutation.ExtraDetails= 
+				[?OrderExtraDetails.Type|PaymentMethod=
+					[?General.IsEmpty,[OrderExtraDetails.Value]|No=
+					<dt>[OrderExtraDetails.Title]  </dt> <dd>[OrderExtraDetails.Value] </dd>
+					]
+				|PaymentProcessor=
+					[?General.IsEmpty,[OrderExtraDetails.Value]|No=
+					<dt>[OrderExtraDetails.Title]  </dt> <dd>[OrderExtraDetails.Value] </dd>
+					]
+				]
+			]
+			</dl>
+			[?General.IsEmpty,[OrderMutation.PaymentExternalId]|No=
+			<span>[_Payment External Id:] [OrderMutation.PaymentExternalId]</span>
+			]
+			<p>[OrderMutation.PaymentDetails]</p>
+			<br>
+		</div>
+	</div>
+	[:footerblock]
+</div>
+</body>

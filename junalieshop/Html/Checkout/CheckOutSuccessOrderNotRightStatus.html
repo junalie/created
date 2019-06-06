@@ -1,0 +1,24 @@
+/*
+*	Renders this page when checkout fails because it is already done.
+*	same as CheckOutFailedPage (but refreshed). Show the same, just ass "is already done" or so
+*/
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		[:MetaData,[Website.Name] | [_Checkout Success - Incorrect Order Status]]
+		[:head]
+	</head>
+	<body>
+		[:HeaderBlock]
+		<div class="one-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container]">
+			<div class="main-content ">
+				<p>[_Order #] :  [Order.OrderNumber] </p>
+				<p>[_Current status of your order :] [OrderMutation.Status]</p>
+				<div class="alert alert-warning">
+			    <strong>[_Error :] </strong> [_Order was known, but did not receive a valid status from the payment provider. Please contact the <a href="mailto:%1">shop owner</a>.,[Configuration.StoreInfoMainEMail]]
+			</div> 
+			</div>
+		</div>
+		[:FooterBlock]
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<style type="text/css">
+	.rating-box{
+		width: 160px;
+	}
+	.rating-box,
+	.rating-box.rating-box-md{
+		height: 40px;
+	}
+	.rating-box.percentage .rate-value{
+		position: relative;
+		background-color: #ffa800;
+		height: 15px;
+		border-radius: 2px 0px 0px 2px;
+	}
+	.rating-box.percentage .rate-bg{
+		background-color: #eee;
+		height: 15px;
+		border-radius: 2px;
+		box-shadow: 0px 2px 5px #ccc;
+	}
+	.rating-box.percentage .labels{
+		text-align: center;
+		font-size:12px;
+	}
+</style>
+<div class="product-info-block-content">
+	<div class="clearfix">
+		<div class="rating-box bar [?Url.Model|Product=rating-box-md]">
+			<label>[_Ratings : ] </label> [Product.Ranking]%	
+		</div>
+	</div>
+	<div class="">
+		<a id="read" href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/ListReview/#read_review]">
+			[_%1 Review(s),[Product.NumberOfReviews]]
+		</a>
+		<!-- <a  class="write" href="[Website.GetUrl,Product,0,Review/List/[Product.Id]/AddReview/#write_review]">[_Add Review]</a> -->
+	</div>
+</div>

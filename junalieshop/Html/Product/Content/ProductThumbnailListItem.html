@@ -1,0 +1,24 @@
+<div class="media">
+	<div class="media-left">
+		[?Product.ThumbnailImageEmpty|Yes=
+			<a href="[Website.GetUrl,Product,[Product.Id]]">
+				<img class="thumbnail media-object" width="80" title="[Product.Name]" src="[File:/images/no_image.png]">
+			</a>
+			|No=
+			<a href="[Website.GetUrl,Product,[Product.Id]]">
+				<img class="thumbnail media-object" width="80" title="[Product.Name]" src="/[Product.ThumbnailImageUrl]">
+			</a>
+		]
+	</div>
+	<div class="media-body">
+		<h5 class="media-heading" style="font-weight: bold">
+			<a href="[Website.GetUrl,Product,[Product.Id]]">
+				[General.Elipsis,[Product.Name],20]
+			</a>
+		</h5>
+		<p>
+			[General.Elipsis,[Product.Description],40]
+		</p>
+	</div>
+	<hr/>
+</div>

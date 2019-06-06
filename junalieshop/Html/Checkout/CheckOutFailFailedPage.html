@@ -1,0 +1,39 @@
+/*
+*	Renders CheckOutFailFailedPage during the checkout process.  This contains the message if payment process is failed.
+*/
+/** -------------------------------------------------------------------
+Name:              CheckOutFailFailedPage
+Location:          /Html/Checkout/CheckOutFailFailedPage.html
+Created By:        Leslie Canete
+Created At:        06-Okt-2014 17:06 (relocation)
+Last modified By:  Aris Catan
+Last modified At:  27-Okt-2014 13:01 (updates on adding comments)
+Calling blocks:    footer 	header 	head 	
+Calling unknown:   MetaData,[_Checkout Fail - Payment Failed] 	
+--------------------------------------------------------------------**/
+
+
+<!DOCTYPE html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	[:MetaData,[Website.Name] | [_Checkout Fail - Payment Failed]]
+	[:head]
+	
+</head>
+<body>
+	<div class="page pagenotfound">
+		[:HeaderBlock]
+		<div class="one-column [?Design.DesignSelectionName,vPageWidth|UseFullWidth=container-fluid|=container]">
+			[:Notification]
+			<div class="main-content ">
+				<div class="col-md-12 main-content " style="min-height: 200px;">
+					<div class="alert alert-warning">
+					    <strong>[_Error :] </strong> [_The payment was not successful. When trying to handle the unsuccessful payment, an internal error occured.] 
+					</div> 
+				</div>
+			</div>
+		</div>
+		[:footerblock]
+	</div>
+</body>
+</html>

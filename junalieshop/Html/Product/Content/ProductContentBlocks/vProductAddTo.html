@@ -1,0 +1,10 @@
+[?WebsiteFeatures.WishList|Yes=
+	<button  data-toggle="tooltip" data-placement="top" title="[_Add to Wishlist]" class="btn btn-link" onclick="javascript:IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddToWishlist]',IncraWindow.formatUrl('[Website.GetUrl,Product,[Product.Id]]'),'true/[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'POST'); ">
+		<span class="glyphicon glyphicon-heart"></span> [_Wishlist]
+	</button>
+]
+[?WebsiteFeatures.CompareProducts|Yes=
+	<button  data-toggle="tooltip" data-placement="top" title="[_Add to Compare]" class="btn btn-link" onclick="javascript:IncraAjaxUpdater.submitAjax('[Website.GetUrl,IncraShop,AddToCompare]',IncraWindow.formatUrl('[Website.GetUrl,Product,[Product.Id]]'),'true/[SimpleProduct.Id]',jQuery('#product_addtocart_form').serialize(),'POST');">
+		<span class="glyphicon glyphicon-th-large"></span> [_Compare]
+	</button>
+]

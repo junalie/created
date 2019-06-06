@@ -1,0 +1,11 @@
+[?WebsiteFeatures.Reservations|Yes=
+	[?Product.CanReserveThisProduct|Yes=
+		[?Product.IsReserved,[Customer.Id]|Yes=<strong>[_You reserved this product] </strong>  <br>
+			<a href="[Website.GetUrl, Customer,Reservations]" class="reserve-link">[_Edit Reservation]</a>
+		|=
+			<a href="javascript:IncraReserve.show('[Website.GetUrl,product,ShowReserveProduct]/[SimpleProduct.Id]','modalreservation')" class="reserve-link">[_Reserve this Product]</a>
+		]
+	
+	]
+]
+

@@ -1,0 +1,37 @@
+<div class="col-md-12 post-item">
+	<div class="post-header row">
+		<div class="user-avatar">
+			<img src="/[BlogItem.CustomerId=[Customer.Avatar]]" width="50" />
+		</div>
+		<div class="user-info">
+			<strong>[BlogItem.Customer=[Customer.FullName]]</strong>
+			<h6 style="margin-top: 0px;">[BlogItem.CreationDate]</h6>
+		</div>
+	</div>
+	<div class="row post-description">
+		[?General.isEmpty,[BlogItem.Title]|No=
+			<h5 class="blog-item-title">[BlogItem.Title]</h5>
+		]
+		[?General.isEmpty,[BlogItem.SubTitle]|No=
+			<h6 class="blog-item-subtitle">[BlogItem.SubTitle]</h6>
+		]
+		[?General.isEmpty,[BlogItem.Text]|No=
+			<p class="text-justify">
+				[BlogItem.Text]
+			</p>
+		]
+		[?General.isEmpty,[BlogItem.Images]|No=
+			<div class="post-description-image-container">
+				[BlogItem.Images=
+					<div class="col-md-6 imgs" style="background: url('/[BlogImage.ImageFile]') no-repeat">
+						
+					</div>
+				]
+			</div>
+		]
+		[?General.isEmpty,[BlogItem.Footnote]|No=
+			<h5 class="blog-item-footnote">[BlogItem.Footnote]</h5>
+		]
+	</div>
+	[:BlogPostCommentForm]
+</div>

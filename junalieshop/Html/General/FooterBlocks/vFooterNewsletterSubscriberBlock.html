@@ -1,0 +1,62 @@
+[?WebsiteFeatures.Newsletter|Yes=
+	<form id="footer-newsletter-validate-detail" class="form col-md-12">
+		<div class="footer-newsletter-error"></div>
+		<div class="form-group col-md-12" align="center">
+			<label><h1 style="padding-top: 40px;">[_Newsletter]</h1></label>
+			<p style="padding-top: 30px; padding-bottom: 30px;"> Subscribe to our newsletter now and stay up to date with new collections, the latest lookbooks and exclusive offers.</p>
+			<div class="col-md-5 input-group" style="padding-bottom: 40px;">
+				<input id="newsletter-email" type="text" class="newsletter-email form-control" name="email" placeholder="Email address here..."
+					
+				>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-primary subscribe-newsletter " onclick="submitFooterNewsletter('footer-newsletter-validate-detail','[Website.GetUrl,IncraShop,SubscribeToNewsLetter]');"
+					>
+						[_Subscribe]
+					</button>
+				</span>
+			</div>
+
+		</div>
+		<div class="newsletter-error text-left ">
+			[?UserInput.NotificationType
+				|Warning=
+					<div class="alert-warning" style="padding:2px 5px;margin-bottom: 10px;">
+						[UserInput.Notification]
+					</div>
+				|Notify
+					<div class="alert-info" style="padding:2px 5px;margin-bottom: 10px;">
+						[UserInput.Notification]
+					</div>
+			]
+			
+		</div>
+
+	</form>
+
+	<script type="text/javascript">
+		
+
+		submitFooterNewsletter = function(form,surl){
+			url= surl+"/"+IncraWindow.formatUrl('[Website.GetUrl,"Home"]')+"/true";
+				jQuery.ajax(url,{	
+					type: "POST",
+					dataType: "json",
+					cache: false, 
+					data: jQuery("#"+form).serialize(),
+					success: function(response, textStatus, jqXHR){
+							//jQuery(".footer-newsletter-error").html();
+							//jQuery('#newsletter-email').popover('trigger')
+							jQuery(".newsletter-error").html(response[0].Content).fadeOut(5000);
+						},
+					error: function(jqXHR, textStatus, errorThrown)
+						{
+							//alert("The request was not completed successfuly.");
+							console.log(errorThrown);
+						}
+					});
+				return false;
+		}
+	</script>
+]
+
+

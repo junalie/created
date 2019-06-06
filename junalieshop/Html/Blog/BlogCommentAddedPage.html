@@ -1,0 +1,38 @@
+<div class="col-md-12 reply-item">
+	<div class="user-avatar reply-user-avatar" style="">
+		<img src="[BlogComment.CustomerId=[Customer.Avatar]]" width="35" />
+	</div>
+	<div class="reply-content">
+		<strong>[BlogComment.UserName]</strong> [BlogComment.Comment]
+	</div>
+	<div class="comment-likes clearfix" style="padding-left: 45px;">
+		<h6 class="clearfix">
+			<span class="comment-like-count[BlogComment.Id]" style="padding-top: 5px;display: inline-block;">Likes [BlogComment.Likes]</span>
+			<!-- to be remove on final -->
+			<div class="" style="display: inline-block;">
+				<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+					Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+				</a>
+			</div>
+			[?Customer.LoggedIn|Yes=
+				[?Blog.CustomersCanLike|No=
+					<div class="" style="display: inline-block;">
+						<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;"
+							onclick=""
+						>
+							Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+						</a>
+					</div>
+				]
+				|No=
+					[?Blog.GuestsCanLike|Yes=
+						<div class="" style="display: inline-block;">
+						<a onclick="incra_blog.likeComment([BlogComment.Id]); return false;" href="#" class="btn btn-link btn-xs" style="padding: 2px 7px 5px;">
+							Like <img style="margin-left: 5px;vertical-align: top;" src="[File:/images/thumbsup.png]" width="15">
+						</a>
+					</div>
+					]	
+			]
+		</h6>
+	</div>
+</div>

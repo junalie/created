@@ -1,0 +1,39 @@
+<ul class="list-unstyled">
+	<li class="">
+		<div class="row">
+			<div class="col-md-6">
+				<label class="required" for="shipping_country_id">[_Country] <em>*</em></label>
+				<select class="validate-select input-text required form-control" id="shipping_country_id" name="country_id" onchange="setShippingCountryConfigAdvance(this.value);">
+					<option value="">[_Please select country]</option>
+					[Website.AvailableCountries=
+						[CountryGroup.Countries=<option value="[Country.Id]">[Country.Name] </option>]
+					]
+				</select>
+				<script type="text/javascript">
+                    jQuery(document).ready(function(){
+    					jQuery("#shipping_country_id option\\[value=[Configuration.DefaultCountryId]\\]").attr("selected","selected");
+    					[?ShoppingCart.ShippingAddressComplete|Yes=
+    						jQuery("#shipping_country_id").val([ShoppingCart.ShippingAddress=[Address.CountryId]]);
+    						jQuery("#shipping_country_id").trigger("onchange");
+    					|No=
+    						if (jQuery('#shipping_country_id').val())
+	                        	jQuery('#shipping_country_id').trigger("onchange");
+    					]
+                    })
+				</script>
+			</div>
+		</div>
+	</li>
+   [:GeneralAddressFields, shipping]
+</ul>
+<ul class="list-unstyled">
+	[?Customer.LoggedIn
+	|LoggedIn=
+		<li class="control" style="display:none">
+			<input type="checkbox" name="save_in_address_book" value="1"  id="shipping_save_in_address_book" onchange="" />
+			<label for="shipping_save_in_address_book"  class="">[_Save in address book]</label>
+		</li>
+	|=	
+		<li class="no-display"><input type="hidden" name="shipping_save_in_address_book" value="1" /></li>
+	]
+</ul>
